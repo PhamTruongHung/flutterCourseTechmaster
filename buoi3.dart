@@ -1,26 +1,22 @@
-import 'dart:math';
+
 
 void main() {
-  final numbers = List.generate(10, (index) {
-    final random = Random();
-    return random.nextInt(100);
-  });
-  print(numbers);
+  double a = 10;
+  double b = 10;
 
-  int maxNumber = numbers[0];
-  int minNumber = numbers[0];
+  print(calNumber(a: a, b: b, calFunc: div));
+  print(calNumber(a: a, b: b, calFunc: mul));
+}
 
-  for (int number in numbers) {
-    if (maxNumber < number) {
-      maxNumber = number;
-    }
-    if (minNumber > number) {
-      minNumber = number;
-    }
-  }
+double calNumber(
+    {required a, required b, required Function(double a, double b) calFunc}) {
+  return calFunc(a, b);
+}
 
-  print('minNumber: $minNumber');
-  print('maxNumber: $maxNumber');
+double div(double a, double b) {
+  return a / b;
+}
 
-// code o day
+double mul(double a, double b) {
+  return a * b;
 }
