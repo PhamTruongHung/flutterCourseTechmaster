@@ -11,10 +11,10 @@ void main() {
   int minNumber = numbers[0];
 
   for (int number in numbers) {
-    if (maxNumber <= number) {
+    if (maxNumber < number) {
       maxNumber = number;
     }
-    if (minNumber >= number) {
+    if (minNumber > number) {
       minNumber = number;
     }
   }
