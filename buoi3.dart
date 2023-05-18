@@ -1,10 +1,17 @@
 void main() {
-  double a = 10;
+  double a = 20;
   double b = 10;
 
   print(calNumber(a: a, b: b, calFunc: div));
   print(calNumber(a: a, b: b, calFunc: mul));
   print(calNumber(a: a, b: b, calFunc: sum));
+  
+  print(calNumber(
+      a: a,
+      b: b,
+      calFunc: (a, b) {
+        return a - b;
+      }));
 }
 
 double calNumber(
