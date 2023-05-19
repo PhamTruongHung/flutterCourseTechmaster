@@ -1,32 +1,60 @@
+import 'dart:math';
+
 void main() {
-  double a = 20;
-  double b = 10;
+  // Generate a list of 10 random numbers.
+  List<int> randomNumbers = List.generate(10, (index) {
+    final random = Random();
+    return random.nextInt(100);
+  });
 
-  print(calNumber(a: a, b: b, calFunc: div));
-  print(calNumber(a: a, b: b, calFunc: mul));
-  print(calNumber(a: a, b: b, calFunc: sum));
-  
-  print(calNumber(
-      a: a,
-      b: b,
-      calFunc: (a, b) {
-        return a - b;
-      }));
+  // Print the list of random numbers.
+  print('Original numbers: $randomNumbers');
+
+  // Try to swap the first two elements of the list.
+  try {
+    // randomNumbers = swapTwoElement(randomNumbers, 0, 11);
+    randomNumbers = sortListInt(randomNumbers, true);
+  } catch (e) {
+    print(e);
+  }
+
+  // Print the list of random numbers after the swap.
+  print('Swapped numbers : $randomNumbers');
 }
 
-double calNumber(
-    {required a, required b, required Function(double a, double b) calFunc}) {
-  return calFunc(a, b);
+List<int> sortListInt(List<int> targetList, bool direction) {
+  if (targetList.isEmpty) {
+    throw (Exception("--------------------> Something wrong!!!"));
+  }
+
+  for (var maxLenght = targetList.length; maxLenght > 0; maxLenght--) {
+    for (var j = 0; j < maxLenght - 1; j++) {
+      if (direction == true ? targetList[j] > targetList[j + 1] : targetList[j] < targetList[j + 1] ) {
+        targetList = swapTwoElement(targetList, j, j + 1);
+      }
+      // print(targetList);
+    }
+  }
+
+  return targetList;
 }
 
-double div(double a, double b) {
-  return a / b;
-}
+List<int> swapTwoElement(
+    List<int> targetList, int firstIndex, int secondIndex) {
+  // Check that the indexes are valid.
+  if (targetList.isEmpty ||
+      firstIndex == secondIndex ||
+      firstIndex > targetList.length - 1 ||
+      secondIndex > targetList.length - 1 ||
+      firstIndex < 0 ||
+      secondIndex < 0) {
+    throw (Exception("--------------------> Something wrong!!!"));
+  }
 
-double mul(double a, double b) {
-  return a * b;
-}
+  // Swap the elements at the specified indexes.
+  int temp = targetList[firstIndex];
+  targetList[firstIndex] = targetList[secondIndex];
+  targetList[secondIndex] = temp;
 
-double sum(double a, double b) {
-  return a + b;
+  return targetList;
 }
