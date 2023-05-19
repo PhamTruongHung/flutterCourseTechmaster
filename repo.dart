@@ -27,6 +27,13 @@ String onChangedCallbackFunc(String text) {
   return text;
 }
 
+///Buoi 4 - Bai 3
+
+void buttonCount(int number, {required Function() onPressed}) {
+  onPressed();
+}
+
+///Buoi 4 - Bai 4
 ///Sort list of int
 List<int> sortListInt(
     {required List<int> targetList, required bool ascending}) {

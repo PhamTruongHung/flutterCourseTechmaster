@@ -7,7 +7,7 @@ void main() {
 
   print('\n-------------------Buoi 4 - Bai 1-----------------------');
 
-  timerPeriodic(second: 2, callback: sleepFunc);
+  timerPeriodic(second: 1, callback: sleepFunc);
 
   // Buoi 4 - Bai 2
   print('\n-------------------Buoi 4 - Bai 2-----------------------');
@@ -16,8 +16,20 @@ void main() {
     print(value);
   });
 
-  // Buoi 4 - Bai 4.
+  // Buoi 4 - Bai 3
+  print('\n-------------------Buoi 4 - Bai 3-----------------------');
 
+  int number = 0;
+  print('Number: $number');
+  buttonCount(
+    number,
+    onPressed: () {
+      number++;
+    },
+  );
+  print('Number: $number');
+
+  // Buoi 4 - Bai 4.
   print('\n-------------------Buoi 4 - Bai 4-----------------------');
   List<int> randomNumbers = List.generate(30, (index) {
     final random = Random();
