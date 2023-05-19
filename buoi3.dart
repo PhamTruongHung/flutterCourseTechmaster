@@ -13,7 +13,7 @@ void main() {
   // Try to swap the first two elements of the list.
   try {
     // randomNumbers = swapTwoElement(randomNumbers, 0, 11);
-    randomNumbers = sortListInt(randomNumbers, true);
+    randomNumbers = sortListInt(targetList: randomNumbers, direction: true);
   } catch (e) {
     print(e);
   }
@@ -22,14 +22,18 @@ void main() {
   print('Swapped numbers : $randomNumbers');
 }
 
-List<int> sortListInt(List<int> targetList, bool direction) {
+///Sort list of int, true for increase direction, false for decrease direction
+List<int> sortListInt(
+    {required List<int> targetList, required bool direction}) {
   if (targetList.isEmpty) {
     throw (Exception("--------------------> Something wrong!!!"));
   }
 
   for (var maxLenght = targetList.length; maxLenght > 0; maxLenght--) {
     for (var j = 0; j < maxLenght - 1; j++) {
-      if (direction == true ? targetList[j] > targetList[j + 1] : targetList[j] < targetList[j + 1] ) {
+      if (direction == true
+          ? targetList[j] > targetList[j + 1]
+          : targetList[j] < targetList[j + 1]) {
         targetList = swapTwoElement(targetList, j, j + 1);
       }
       // print(targetList);
