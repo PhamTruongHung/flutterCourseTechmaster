@@ -2,36 +2,36 @@ import 'dart:math';
 
 void main() {
   // Generate a list of 10 random numbers.
-  List<int> randomNumbers = List.generate(10, (index) {
+  List<int> randomNumbers = List.generate(30, (index) {
     final random = Random();
     return random.nextInt(100);
   });
 
   // Print the list of random numbers.
-  print('Original numbers: $randomNumbers');
+  print('Original numbers           : $randomNumbers');
 
   // Try to swap the first two elements of the list.
   try {
-    // randomNumbers = swapTwoElement(randomNumbers, 0, 11);
-    randomNumbers = sortListInt(targetList: randomNumbers, direction: true);
+    print('Sorted numbers (ascending) : ${sortListInt(targetList: randomNumbers, ascending: true)}');
+    print('Sorted numbers (descending): ${sortListInt(targetList: randomNumbers, ascending: false)}');
   } catch (e) {
     print(e);
   }
 
   // Print the list of random numbers after the swap.
-  print('Swapped numbers : $randomNumbers');
+  // print('Swapped numbers : $randomNumbers');
 }
 
-///Sort list of int, true for increase direction, false for decrease direction
+///Sort list of int
 List<int> sortListInt(
-    {required List<int> targetList, required bool direction}) {
+    {required List<int> targetList, required bool ascending}) {
   if (targetList.isEmpty) {
     throw (Exception("--------------------> Something wrong!!!"));
   }
 
   for (var maxLenght = targetList.length; maxLenght > 0; maxLenght--) {
     for (var j = 0; j < maxLenght - 1; j++) {
-      if (direction == true
+      if (ascending == true
           ? targetList[j] > targetList[j + 1]
           : targetList[j] < targetList[j + 1]) {
         targetList = swapTwoElement(targetList, j, j + 1);
