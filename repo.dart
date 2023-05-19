@@ -15,7 +15,6 @@ void sleepFunc(int second) {
 }
 
 ///Buoi 4 - Bai 2
-
 textField(String text, {Function(String)? onChanged}) {
   if (onChanged != null) {
     final result = 'Hello $text';
@@ -28,7 +27,6 @@ String onChangedCallbackFunc(String text) {
 }
 
 ///Buoi 4 - Bai 3
-
 void buttonCount(int number, {required Function() onPressed}) {
   onPressed();
 }
