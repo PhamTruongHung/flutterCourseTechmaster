@@ -2,15 +2,11 @@ import 'dart:io';
 
 ///Buoi 4 - Bai 1
 timerPeriodic({required int second, required Function(int) callback}) {
-  callback(second);
-}
-
-void sleepFunc(int second) {
   int count = 0;
-  while (count <= second) {
-    print('Current timer value: $count (s)');
-    sleep(Duration(seconds: 1));
-    count++;
+  while (true) {
+    sleep(Duration(seconds: second));
+    callback(count);
+    count = count + second;
   }
 }
 

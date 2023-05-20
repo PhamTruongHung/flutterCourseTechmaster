@@ -3,10 +3,6 @@ import 'dart:math';
 import 'repo.dart';
 
 void main() {
-  print('\n-------------------Buoi 4 - Bai 1-----------------------');
-
-  timerPeriodic(second: 10, callback: sleepFunc);
-
   print('\n-------------------Buoi 4 - Bai 2-----------------------');
   String sampleTextInput = "sampleTextInput";
   textField(sampleTextInput, onChanged: (value) {
@@ -40,4 +36,12 @@ void main() {
   } catch (e) {
     print(e);
   }
+
+  print('\n-------------------Buoi 4 - Bai 1-----------------------');
+
+  timerPeriodic(
+      second: 1,
+      callback: (returnValue) {
+        print('Current timer: $returnValue (s)');
+      });
 }
