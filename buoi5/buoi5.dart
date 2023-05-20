@@ -1,10 +1,14 @@
 void main() async {
   print('Start: ${DateTime.now().second}');
 
-  var loginVar = login();
-  var getConfigVar = getConfig();
+  // var loginVar = login();
+  // var getConfigVar = getConfig();
 
-  loginVar.then((value) => getConfigVar.then((value) => getProfile()));
+  // loginVar.then((value) => getConfigVar.then((value) => getProfile()));
+
+  Future.wait([login(), getConfig()]).then((value) => getProfile());
+
+  
 
   print('Finish: ${DateTime.now().second}');
 }
