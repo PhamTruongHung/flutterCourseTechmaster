@@ -75,4 +75,5 @@ void main() async {
   } catch (e) {
     print(e);
   }
+  print('object');
 }
