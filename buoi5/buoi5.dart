@@ -1,6 +1,8 @@
 import 'animal.dart';
 import 'devices.dart';
 import 'manufacturer.dart';
+import 'queue.dart';
+import 'stack.dart';
 
 void main() async {
   print('\n-------------Buoi 5 - Bai 1---------------');
@@ -30,5 +32,48 @@ void main() async {
       firmwareName: 'firmwareName');
 
   print(device);
-  
+
+  print('\n-------------Buoi 5 - Bai 3---------------');
+
+  Stack stack = Stack(capacity: 5);
+
+  try {
+    for (var i = 1; i <= 6; i++) {
+      stack.push(i.toString());
+      print(stack);
+    }
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    for (var i = 1; i <= 6; i++) {
+      stack.pop();
+      print(stack);
+    }
+  } catch (e) {
+    print(e);
+  }
+
+  print('\n-------------Buoi 5 - Bai 4---------------');
+
+  Queue queue = Queue(capacity: 5);
+
+  try {
+    for (var i = 1; i <= 6; i++) {
+      queue.enqueue(i.toString());
+      print(stack);
+    }
+  } catch (e) {
+    print(e);
+  }
+
+  try {
+    for (var i = 1; i <= 6; i++) {
+      queue.dequeue();
+      print(stack);
+    }
+  } catch (e) {
+    print(e);
+  }
 }
