@@ -1,4 +1,3 @@
-
 import 'package:dart_learning/buoi5/animal.dart';
 import 'package:dart_learning/buoi5/devices.dart';
 import 'package:dart_learning/buoi5/manufacturer.dart';
@@ -24,9 +23,8 @@ void main() async {
 
   print('\n-------------Buoi 5 - Bai 2---------------');
 
-  final manufacturer = Manufacturer(id: '234235', name: 'Honda');
+  final manufacturer = Manufacturer(name: 'Honda');
   Device device = Device(
-      id: '2345235',
       name: 'Cup 50',
       manufacturer: manufacturer,
       osName: 'osName',

@@ -1,4 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:uuid/uuid.dart';
+
 import 'manufacturer.dart';
 
 class Device {
@@ -9,12 +10,12 @@ class Device {
   String osName;
   String firmwareName;
   Device({
-    required this.id,
+    String? id,
     required this.name,
     required this.manufacturer,
     required this.osName,
     required this.firmwareName,
-  });
+  }) : id = id ?? Uuid().v4();
 
   Device copyWith({
     String? id,
