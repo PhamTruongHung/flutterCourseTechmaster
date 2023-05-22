@@ -61,7 +61,6 @@ void main() async {
 
   try {
     for (var i = 1; i <= 6; i++) {
-      queue.enqueue(i.toString());
       print(queue);
     }
   } catch (e) {
