@@ -1,29 +1,34 @@
+import 'animal.dart';
+import 'devices.dart';
+import 'manufacturer.dart';
+
 void main() async {
-  print('Start: ${DateTime.now().second}');
+  print('\n-------------Buoi 5 - Bai 1---------------');
 
-  // var loginVar = login();
-  // var getConfigVar = getConfig();
+  final dog1 = Dog(name: 'Dog1');
+  dog1.walk();
 
-  // loginVar.then((value) => getConfigVar.then((value) => getProfile()));
+  final fish1 = Fish(name: 'Fish1');
+  fish1.swim();
 
-  Future.wait([login(), getConfig()]).then((value) => getProfile());
+  final bird1 = Bird(name: 'Dird1');
+  bird1.fly();
 
+  final duck1 = Duck(name: 'Duck1');
+  duck1.fly();
+  duck1.swim();
+  duck1.walk();
+
+  print('\n-------------Buoi 5 - Bai 2---------------');
+
+  final manufacturer = Manufacturer(id: '234235', name: 'Honda');
+  Device device = Device(
+      id: '2345235',
+      name: 'Cup 50',
+      manufacturer: manufacturer,
+      osName: 'osName',
+      firmwareName: 'firmwareName');
+
+  print(device);
   
-
-  print('Finish: ${DateTime.now().second}');
-}
-
-Future<void> login() async {
-  await Future.delayed(Duration(seconds: 3));
-  print('login: ${DateTime.now().second}');
-}
-
-Future<void> getConfig() async {
-  await Future.delayed(Duration(seconds: 1));
-  print('getConfig: ${DateTime.now().second}');
-}
-
-Future<void> getProfile() async {
-  await Future.delayed(Duration(seconds: 1));
-  print('getProfile: ${DateTime.now().second}');
 }
