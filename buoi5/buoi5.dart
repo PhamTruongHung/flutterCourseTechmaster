@@ -62,7 +62,7 @@ void main() async {
   try {
     for (var i = 1; i <= 6; i++) {
       queue.enqueue(i.toString());
-      print(stack);
+      print(queue);
     }
   } catch (e) {
     print(e);
@@ -71,7 +71,7 @@ void main() async {
   try {
     for (var i = 1; i <= 6; i++) {
       queue.dequeue();
-      print(stack);
+      print(queue);
     }
   } catch (e) {
     print(e);
