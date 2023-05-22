@@ -16,7 +16,7 @@ class Queue {
   }
 
   String dequeue() {
-    if (this.isEmpty()) {
+    if (isEmpty()) {
       throw ('--> This queue was empty when trying to remove first item!!!');
     }
     String firstItem = list.first;
@@ -25,7 +25,7 @@ class Queue {
   }
 
   void enqueue(String value) {
-    if (this.isFull()) {
+    if (isFull()) {
       throw ('--> This queue was full when add this value: $value');
     }
     list.add(value);

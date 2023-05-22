@@ -11,14 +11,14 @@ class Stack {
   }
 
   void push(String value) {
-    if (this.isFull()) {
+    if (isFull()) {
       throw ('--> This stack was full when add this value: $value');
     }
     list.add(value);
   }
 
   String pop() {
-    if (this.isEmpty()) {
+    if (isEmpty()) {
       throw ('--> This stack was empty when trying to remove last item!!!');
     }
     String lastItem = list.last;
