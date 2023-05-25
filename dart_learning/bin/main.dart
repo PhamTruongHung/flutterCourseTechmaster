@@ -66,5 +66,5 @@ void main() async {
   screenSize2.init(deviceSize);
 
   print(screenSize2);
-  print(screenSize2.scaleWitdh(3));
+  print(screenSize2.scaleWitdh(32));
 }

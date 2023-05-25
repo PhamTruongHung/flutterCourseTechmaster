@@ -3,7 +3,7 @@ import 'package:dart_learning/buoi6/size_type_phake.dart';
 
 class ScreenSize {
   late SizeTypeFake _designScreenSize;
-  late final SizeTypeFake _deviceScreenSize =
+  final SizeTypeFake _deviceScreenSize =
       SizeTypeFake(width: 375, height: 812); //iPhone
   ScreenSize();
 
@@ -11,12 +11,12 @@ class ScreenSize {
     _designScreenSize = sizeTypeFake;
   }
 
-  double scaleWitdh(double designNumber) {
+  double scaleWitdh(num designNumber) {
     try {
-      return designNumber / _deviceScreenSize.width;
+      return (_designScreenSize.width / _deviceScreenSize.width) * designNumber;
     } catch (e) {
       print(e);
-      return designNumber;
+      return designNumber.toDouble();
     }
   }
 
