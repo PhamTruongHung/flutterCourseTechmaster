@@ -1,3 +1,4 @@
+import 'package:dart_learning/buoi6/appcontext.dart';
 import 'package:dart_learning/buoi6/car.dart';
 import 'package:dart_learning/buoi6/comment.dart';
 import 'package:dart_learning/buoi6/member.dart';
@@ -58,4 +59,12 @@ void main() async {
   print(screenSize.scaleWitdh(3));
 
   print('\n-------------Buoi 6 - Bai 4---------------');
+
+  AppContext appContext = AppContext();
+  SizeTypeFake deviceSize = appContext.deviceSize;
+  ScreenSize screenSize2 = ScreenSize();
+  screenSize2.init(deviceSize);
+
+  print(screenSize2);
+  print(screenSize2.scaleWitdh(3));
 }
