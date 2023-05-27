@@ -27,6 +27,6 @@ void main() async {
   queueGenerics.enqueue('value');
   queueGenerics.enqueue(1);
   print(queueGenerics.toString());
-  
-  print('\n-------------Buoi 7 - Bai 3---------------\n');
+
+  print('\n-------------Buoi 7 - Bai 4---------------\n');
 }
