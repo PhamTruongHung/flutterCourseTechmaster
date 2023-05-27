@@ -42,46 +42,70 @@ class _MyHomePageState extends State<MyHomePage> {
         width: double.infinity,
         height: double.infinity,
         color: Colors.amber[50],
-        child: const Stack(
+        child: Stack(
           alignment: Alignment.center,
           children: [
-            Positioned(
-              left: 0,
-              top: 0,
-              child: ColorWidget(
-                widgetName: '1',
-                widgetColor: Colors.red,
-                widgetSize: Size(300, 200),
+            for (var i = 1; i <= 4; i++)
+              Positioned(
+                left: i % 2 == 1 ? 0 : null,
+                top: i <= 2 ? 0 : null,
+                right: i % 2 == 0 ? 0 : null,
+                bottom: i > 2 ? 0 : null,
+                child: ColorWidget(
+                  widgetName: '$i',
+                  widgetColor: i == 1
+                      ? Colors.red
+                      : i == 2
+                          ? Colors.orange
+                          : i == 3
+                              ? Colors.blue
+                              : Colors.yellow,
+                  widgetSize: i == 1
+                      ? const Size(300, 200)
+                      : i == 2
+                          ? const Size(150, 220)
+                          : i == 3
+                              ? const Size(120, 220)
+                              : const Size(600, 150),
+                ),
               ),
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: ColorWidget(
-                widgetName: '2',
-                widgetColor: Colors.orange,
-                widgetSize: Size(150, 220),
-              ),
-            ),
-            Positioned(
-              right: 0,
-              bottom: 0,
-              child: ColorWidget(
-                widgetName: '3',
-                widgetColor: Colors.blue,
-                widgetSize: Size(120, 220),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              child: ColorWidget(
-                widgetName: '4',
-                widgetColor: Colors.yellow,
-                widgetSize: Size(600, 150),
-              ),
-            ),
-            Positioned(
+            // Positioned(
+            //   left: 0,
+            //   top: 0,
+            //   child: ColorWidget(
+            //     widgetName: '1',
+            //     widgetColor: Colors.red,
+            //     widgetSize: Size(300, 200),
+            //   ),
+            // ),
+            // Positioned(
+            //   top: 0,
+            //   right: 0,
+            //   child: ColorWidget(
+            //     widgetName: '2',
+            //     widgetColor: Colors.orange,
+            //     widgetSize: Size(150, 220),
+            //   ),
+            // ),
+            // Positioned(
+            //   right: 0,
+            //   bottom: 0,
+            //   child: ColorWidget(
+            //     widgetName: '3',
+            //     widgetColor: Colors.blue,
+            //     widgetSize: Size(120, 220),
+            //   ),
+            // ),
+            // Positioned(
+            //   bottom: 0,
+            //   left: 0,
+            //   child: ColorWidget(
+            //     widgetName: '4',
+            //     widgetColor: Colors.yellow,
+            //     widgetSize: Size(600, 150),
+            //   ),
+            // ),
+            const Positioned(
               child: ColorWidget(
                 widgetName: '5',
                 widgetColor: Colors.green,
