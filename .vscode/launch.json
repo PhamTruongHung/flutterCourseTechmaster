@@ -9,7 +9,7 @@
             "cwd": "dart_learning",
             "request": "launch",
             "type": "dart",
-            "program": "/Users/phamtruonghung/flutterCourseTechmaster/dart_learning/bin/main.dart"
+            "program": "/Users/phamtruonghung/flutterCourseTechmaster/flutter_learning/lib/main.dart"
         }
     ]
 }
