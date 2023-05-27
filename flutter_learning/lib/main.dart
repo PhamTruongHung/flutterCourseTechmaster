@@ -69,42 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               : const Size(600, 150),
                 ),
               ),
-            // Positioned(
-            //   left: 0,
-            //   top: 0,
-            //   child: ColorWidget(
-            //     widgetName: '1',
-            //     widgetColor: Colors.red,
-            //     widgetSize: Size(300, 200),
-            //   ),
-            // ),
-            // Positioned(
-            //   top: 0,
-            //   right: 0,
-            //   child: ColorWidget(
-            //     widgetName: '2',
-            //     widgetColor: Colors.orange,
-            //     widgetSize: Size(150, 220),
-            //   ),
-            // ),
-            // Positioned(
-            //   right: 0,
-            //   bottom: 0,
-            //   child: ColorWidget(
-            //     widgetName: '3',
-            //     widgetColor: Colors.blue,
-            //     widgetSize: Size(120, 220),
-            //   ),
-            // ),
-            // Positioned(
-            //   bottom: 0,
-            //   left: 0,
-            //   child: ColorWidget(
-            //     widgetName: '4',
-            //     widgetColor: Colors.yellow,
-            //     widgetSize: Size(600, 150),
-            //   ),
-            // ),
             const Positioned(
               child: ColorWidget(
                 widgetName: '5',
