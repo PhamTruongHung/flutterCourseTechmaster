@@ -1,70 +1,19 @@
-import 'package:dart_learning/buoi6/appcontext.dart';
-import 'package:dart_learning/buoi6/car.dart';
-import 'package:dart_learning/buoi6/comment.dart';
-import 'package:dart_learning/buoi6/member.dart';
-import 'package:dart_learning/buoi6/motorbike.dart';
-import 'package:dart_learning/buoi6/post.dart';
-import 'package:dart_learning/buoi6/screen_size.dart';
-import 'package:dart_learning/buoi6/size_type_phake.dart';
+import 'dart:convert';
+
+import 'package:dart_learning/buoi7/respone_object.dart';
+import 'package:http/http.dart' as http;
 
 void main() async {
-  print('\n-------------Buoi 6 - Bai 1---------------');
-  Car car = Car(name: 'Car');
-  car.startEngine();
-  car.accelerate();
-  Motorbike motorbike = Motorbike(name: 'Motorbike');
-  motorbike.startEngine();
-  motorbike.brake();
+  print('\n-------------Buoi 7 - Bai 1---------------');
+  Future<http.Response> fetchData() {
+    return http.get(Uri.parse('http://api.quynhtao.com/api/issues?limit=5'));
+  }
 
-  print('\n-------------Buoi 6 - Bai 2---------------');
-  Member member = Member(
-      name: 'Hung',
-      imageUrl: 'imageUrl',
-      fullName: 'fullName',
-      birthday: DateTime.now(),
-      phoneNumber: 'phoneNumber',
-      email: 'email',
-      sex: 'sex',
-      posts: []);
+  await fetchData().then((value) {
+    var jsonDataList = jsonDecode(value.body.toString());
+    ResponeObject responeObject = ResponeObject.fromMap(jsonDataList);
+    print(responeObject.toString());
+  });
 
-  Post post1 = Post(content: 'content', memberID: member.id, comments: []);
-  Post post2 = Post(content: 'content', memberID: member.id, comments: []);
-
-  CustomComment comment1 =
-      CustomComment(commentContent: 'commentContent', postID: post1.id);
-  CustomComment comment2 =
-      CustomComment(commentContent: 'commentContent', postID: post1.id);
-  CustomComment comment3 =
-      CustomComment(commentContent: 'commentContent', postID: post2.id);
-  CustomComment comment4 =
-      CustomComment(commentContent: 'commentContent', postID: post2.id);
-
-  post1.addComment(comment1);
-  post1.addComment(comment2);
-  post2.addComment(comment3);
-  post2.addComment(comment4);
-
-  member.addPost(post1);
-  member.addPost(post2);
-
-  print(member.toString());
-
-  print('\n-------------Buoi 6 - Bai 3---------------');
-
-  SizeTypeFake sizeTypeFake = SizeTypeFake(width: 430, height: 932);
-  ScreenSize screenSize = ScreenSize();
-  screenSize.init(sizeTypeFake);
-
-  print(screenSize);
-  print(screenSize.scaleWitdh(3));
-
-  print('\n-------------Buoi 6 - Bai 4---------------');
-
-  AppContext appContext = AppContext();
-  SizeTypeFake deviceSize = appContext.deviceSize;
-  ScreenSize screenSize2 = ScreenSize();
-  screenSize2.init(deviceSize);
-
-  print(screenSize2);
-  print(screenSize2.scaleWitdh(32));
+  print('\n-------------Buoi 7 - Bai 2---------------');
 }
