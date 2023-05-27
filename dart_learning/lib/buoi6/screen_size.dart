@@ -26,11 +26,10 @@ class ScreenSize {
 }
 
 extension NumExtentions on num {
-  bool check() {
-    return true;
-  }
-
-  bool check2() {
-    return true;
+  double scaleWitdh() {
+    ScreenSize screenSize = ScreenSize();
+    SizeTypeFake sizeTypeFake = SizeTypeFake(width: 430, height: 932);
+    screenSize.init(sizeTypeFake);
+    return double.parse(screenSize.scaleWitdh(this).toStringAsFixed(2));
   }
 }

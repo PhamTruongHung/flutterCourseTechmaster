@@ -17,6 +17,6 @@ void main() async {
   });
 
   print('\n-------------Buoi 7 - Bai 2---------------\n');
-  num numVar = 1;
-  print(numVar.check());
+  num numVar = 32;
+  print(numVar.scaleWitdh());
 }
