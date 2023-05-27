@@ -24,3 +24,13 @@ class ScreenSize {
   String toString() =>
       'ScreenSize(_designScreenSize: $_designScreenSize, _deviceScreenSize: $_deviceScreenSize)';
 }
+
+extension NumExtentions on num {
+  bool check() {
+    return true;
+  }
+
+  bool check2() {
+    return true;
+  }
+}
