@@ -43,35 +43,50 @@ class _MyHomePageState extends State<MyHomePage> {
         height: double.infinity,
         color: Colors.amber[50],
         child: const Stack(
+          alignment: Alignment.center,
           children: [
             Positioned(
-              bottom: 0,
-              right: 0,
+              left: 0,
+              top: 0,
               child: ColorWidget(
                 widgetName: '1',
                 widgetColor: Colors.red,
                 widgetSize: Size(300, 200),
               ),
             ),
-            ColorWidget(
-              widgetName: '2',
-              widgetColor: Colors.orange,
-              widgetSize: Size(150, 220),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: ColorWidget(
+                widgetName: '2',
+                widgetColor: Colors.orange,
+                widgetSize: Size(150, 220),
+              ),
             ),
-            ColorWidget(
-              widgetName: '3',
-              widgetColor: Colors.blue,
-              widgetSize: Size(120, 220),
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: ColorWidget(
+                widgetName: '3',
+                widgetColor: Colors.blue,
+                widgetSize: Size(120, 220),
+              ),
             ),
-            ColorWidget(
-              widgetName: '4',
-              widgetColor: Colors.yellow,
-              widgetSize: Size(600, 150),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              child: ColorWidget(
+                widgetName: '4',
+                widgetColor: Colors.yellow,
+                widgetSize: Size(600, 150),
+              ),
             ),
-            ColorWidget(
-              widgetName: '5',
-              widgetColor: Colors.green,
-              widgetSize: Size(200, 200),
+            Positioned(
+              child: ColorWidget(
+                widgetName: '5',
+                widgetColor: Colors.green,
+                widgetSize: Size(200, 200),
+              ),
             ),
           ],
         ),
