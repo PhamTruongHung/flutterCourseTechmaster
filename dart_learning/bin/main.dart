@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dart_learning/buoi1234/repo.dart';
 import 'package:dart_learning/buoi6/screen_size.dart';
 import 'package:dart_learning/buoi7/queue_genetics.dart';
 import 'package:dart_learning/buoi7/respone_object.dart';
@@ -29,4 +30,7 @@ void main() async {
   print(queueGenerics.toString());
 
   print('\n-------------Buoi 7 - Bai 4---------------\n');
+  List<int> listBuoi7Bai4 = [0, 1, 2, 3, 4];
+  listBuoi7Bai4 = swapTwoElement(listBuoi7Bai4, 1, 2);
+  print(listBuoi7Bai4);
 }
