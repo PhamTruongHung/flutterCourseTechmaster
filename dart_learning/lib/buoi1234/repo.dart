@@ -50,8 +50,8 @@ List<int> sortListInt(
 }
 
 ///swapTwoElement using index number
-List<int> swapTwoElement(
-    List<int> targetList, int firstIndex, int secondIndex) {
+List<T> swapTwoElement<T>(
+    List<T> targetList, int firstIndex, int secondIndex) {
   // Check that the indexes are valid.
   if (targetList.isEmpty ||
       firstIndex == secondIndex ||
@@ -63,7 +63,7 @@ List<int> swapTwoElement(
   }
 
   // Swap the elements at the specified indexes.
-  int temp = targetList[firstIndex];
+  T temp = targetList[firstIndex];
   targetList[firstIndex] = targetList[secondIndex];
   targetList[secondIndex] = temp;
 
