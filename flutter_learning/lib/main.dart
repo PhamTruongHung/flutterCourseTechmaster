@@ -34,13 +34,24 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     double width1of3 = MediaQuery.of(context).size.width / 3;
-    double height1of3 = MediaQuery.of(context).size.height / 3;
 
     return Scaffold(
       body: Container(
+        margin: const EdgeInsets.only(left: 30, top: 30, right: 30, bottom: 30),
+        decoration: BoxDecoration(
+          color: Colors.red,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
         width: double.infinity,
         height: double.infinity,
-        color: Colors.red,
+        // color: Colors.red,
         child: Stack(
           alignment: Alignment.center,
           children: [
