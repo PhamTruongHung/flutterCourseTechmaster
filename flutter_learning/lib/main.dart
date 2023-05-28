@@ -40,41 +40,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: Colors.amber[50],
+        color: Colors.red,
         child: Stack(
           alignment: Alignment.center,
           children: [
-            for (var i = 1; i <= 4; i++)
-              Positioned(
-                left: i % 2 == 1 ? 0 : null,
-                top: i <= 2 ? 0 : null,
-                right: i % 2 == 0 ? 0 : null,
-                bottom: i > 2 ? 0 : null,
-                child: ColorWidget(
-                  widgetName: '$i',
-                  widgetColor: i == 1
-                      ? Colors.red
-                      : i == 2
-                          ? Colors.orange
-                          : i == 3
-                              ? Colors.blue
-                              : Colors.yellow,
-                  widgetSize: i == 1
-                      ? Size(2 * width1of3, height1of3)
-                      : i == 2
-                          ? Size(width1of3, 2 * height1of3)
-                          : i == 3
-                              ? Size(width1of3, 2 * height1of3)
-                              : Size(2 * width1of3, height1of3),
-                ),
-              ),
-            Positioned(
-              child: ColorWidget(
-                widgetName: '5',
-                widgetColor: Colors.green,
-                widgetSize: Size(width1of3, height1of3),
-              ),
-            ),
+            Icon(
+              Icons.star,
+              color: Colors.yellow,
+              size: width1of3,
+            )
           ],
         ),
       ),
