@@ -34,17 +34,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // double width1of3 = MediaQuery.of(context).size.width / 3;
-    // double height1of3 = MediaQuery.of(context).size.height / 3;
-    // List<Color> colors = [Colors.blue[900]!, Colors.white, Colors.red[800]!];
-
     return Scaffold(
       body: Center(
         child: Container(
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey, width: 1),
-          ),
           child: const RowStar(
             rate: 3,
           ),
@@ -63,13 +56,18 @@ class RowStar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (rate > 5 || rate < 0) {
-      throw Exception('Can not over five or negative!!!');
+    int rateTmp = rate;
+    if (rate > 5) {
+      rateTmp = 5;
     }
+    if (rate < 0) {
+      rateTmp = 0;
+    }
+
     List<Widget> starRow = [];
 
     for (int i = 0; i < 5; i++) {
-      starRow.add(RateStar(check: i > rate - 1 ? false : true));
+      starRow.add(RateStar(check: i > rateTmp - 1 ? false : true));
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
