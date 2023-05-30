@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     // double width1of3 = MediaQuery.of(context).size.width / 3;
     // double height1of3 = MediaQuery.of(context).size.height / 3;
-    List<Color> colors = [Colors.blue, Colors.white, Colors.red];
+    List<Color> colors = [Colors.blue[900]!, Colors.white, Colors.red[800]!];
 
     return Scaffold(
       body: Container(
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         height: double.infinity,
         // color: Colors.white,
         decoration:
-            BoxDecoration(border: Border.all(color: Colors.grey, width: 1)),
+            BoxDecoration(border: Border.all(color: Colors.grey, width: 5)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
