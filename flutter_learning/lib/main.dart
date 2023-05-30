@@ -34,17 +34,61 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final statistic = [Keno('Chan', 5), Keno('Le', 2), Keno('Hoa CL', 3)];
     return Scaffold(
       body: Center(
         child: Container(
+          width: 600,
+          height: 300,
+          padding: const EdgeInsets.all(20),
+          decoration:
+              BoxDecoration(border: Border.all(color: Colors.red, width: 2)),
           alignment: Alignment.center,
-          child: const RowStar(
-            rate: 3,
+          child: Column(
+            children: [
+              KenoRow(keno: statistic[0]),
+              KenoRow(keno: statistic[1]),
+              KenoRow(keno: statistic[2]),
+            ],
           ),
         ),
       ),
     );
   }
+}
+
+class KenoRow extends StatelessWidget {
+  final Keno keno;
+  const KenoRow({super.key, required this.keno});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(keno.text),
+        Expanded(
+          child: Container(
+            height: 5,
+            decoration: const BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.all(
+                Radius.circular(3),
+              ),
+            ),
+          ),
+        ),
+        Text('${keno.count} Lan'),
+      ],
+    );
+  }
+}
+
+class Keno {
+  final String text;
+  final int count;
+
+  Keno(this.text, this.count);
 }
 
 class RowStar extends StatelessWidget {
