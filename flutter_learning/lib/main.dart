@@ -63,14 +63,17 @@ class RowStar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (rate > 5) {
-      throw Exception('Can not over five!!!');
+    if (rate > 5 || rate < 0) {
+      throw Exception('Can not over five or negative!!!');
+    }
+    List<Widget> starRow = [];
+
+    for (int i = 0; i < 5; i++) {
+      starRow.add(RateStar(check: i > rate - 1 ? false : true));
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (int i = 0; i < 5; i++) RateStar(check: i > rate - 1 ? false : true)
-      ],
+      children: starRow,
     );
   }
 }
