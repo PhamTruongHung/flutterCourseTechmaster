@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 void main() {
@@ -35,30 +36,58 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     // double width1of3 = MediaQuery.of(context).size.width / 3;
     // double height1of3 = MediaQuery.of(context).size.height / 3;
-    List<Color> colors = [Colors.blue[900]!, Colors.white, Colors.red[800]!];
+    // List<Color> colors = [Colors.blue[900]!, Colors.white, Colors.red[800]!];
 
     return Scaffold(
       body: Center(
         child: Container(
-          width: 302,
-          height: 200,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey, width: 1),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (int i = 0; i < colors.length; i++)
-                ColorWidget(
-                  widgetName: '',
-                  widgetColor: colors[i],
-                  widgetSize: const Size(100, 200),
-                )
-            ],
+          child: const RowStar(
+            rate: 3,
           ),
         ),
       ),
+    );
+  }
+}
+
+class RowStar extends StatelessWidget {
+  final int rate;
+  const RowStar({
+    super.key,
+    required this.rate,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (rate > 5) {
+      throw Exception('Can not over five!!!');
+    }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (int i = 0; i < 5; i++) RateStar(check: i > rate - 1 ? false : true)
+      ],
+    );
+  }
+}
+
+class RateStar extends StatelessWidget {
+  final bool check;
+
+  const RateStar({
+    Key? key,
+    required this.check,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      Icons.star,
+      color: check ? Colors.yellow : Colors.grey,
     );
   }
 }
