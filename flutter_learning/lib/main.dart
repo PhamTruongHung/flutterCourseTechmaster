@@ -33,33 +33,32 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    double width1of3 = MediaQuery.of(context).size.width / 3;
+    // double width1of3 = MediaQuery.of(context).size.width / 3;
+    // double height1of3 = MediaQuery.of(context).size.height / 3;
 
     return Scaffold(
       body: Container(
-        margin: const EdgeInsets.only(left: 30, top: 30, right: 30, bottom: 30),
-        decoration: BoxDecoration(
-          color: Colors.red,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
+        // margin: const EdgeInsets.all(30),
         width: double.infinity,
-        height: double.infinity,
-        // color: Colors.red,
-        child: Stack(
-          alignment: Alignment.center,
+        color: Colors.grey,
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.star,
-              color: Colors.yellow,
-              size: width1of3,
-            )
+            ColorWidget(
+              widgetName: '',
+              widgetColor: Colors.white,
+              widgetSize: Size(300, 200 / 3),
+            ),
+            ColorWidget(
+              widgetName: '',
+              widgetColor: Colors.blue,
+              widgetSize: Size(300, 200 / 3),
+            ),
+            ColorWidget(
+              widgetName: '',
+              widgetColor: Colors.red,
+              widgetSize: Size(300, 200 / 3),
+            ),
           ],
         ),
       ),
@@ -68,22 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class ColorWidget extends StatelessWidget {
-  const ColorWidget(
-      {super.key,
-      required this.widgetName,
-      required this.widgetColor,
-      required this.widgetSize,
-      this.left,
-      this.top,
-      this.right,
-      this.bottom});
+  const ColorWidget({
+    super.key,
+    required this.widgetName,
+    required this.widgetColor,
+    required this.widgetSize,
+  });
   final String widgetName;
   final Color widgetColor;
   final Size widgetSize;
-  final double? left;
-  final double? top;
-  final double? right;
-  final double? bottom;
   @override
   Widget build(BuildContext context) {
     return Container(
