@@ -38,22 +38,25 @@ class _MyHomePageState extends State<MyHomePage> {
     List<Color> colors = [Colors.blue[900]!, Colors.white, Colors.red[800]!];
 
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        // color: Colors.white,
-        decoration:
-            BoxDecoration(border: Border.all(color: Colors.grey, width: 5)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (int i = 0; i < colors.length; i++)
-              ColorWidget(
-                widgetName: '',
-                widgetColor: colors[i],
-                widgetSize: const Size(100, 200),
-              )
-          ],
+      body: Center(
+        child: Container(
+          width: 302,
+          height: 200,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey, width: 1),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (int i = 0; i < colors.length; i++)
+                ColorWidget(
+                  widgetName: '',
+                  widgetColor: colors[i],
+                  widgetSize: const Size(100, 200),
+                )
+            ],
+          ),
         ),
       ),
     );
@@ -73,7 +76,7 @@ class ColorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
+      // alignment: Alignment.center,
       color: widgetColor,
       width: widgetSize.width,
       height: widgetSize.height,
