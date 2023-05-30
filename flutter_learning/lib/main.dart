@@ -35,30 +35,22 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     // double width1of3 = MediaQuery.of(context).size.width / 3;
     // double height1of3 = MediaQuery.of(context).size.height / 3;
+    List<Color> colors = [Colors.blue, Colors.white, Colors.red];
 
     return Scaffold(
       body: Container(
-        // margin: const EdgeInsets.all(30),
         width: double.infinity,
+        height: double.infinity,
         color: Colors.grey,
-        child: const Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ColorWidget(
-              widgetName: '',
-              widgetColor: Colors.white,
-              widgetSize: Size(300, 200 / 3),
-            ),
-            ColorWidget(
-              widgetName: '',
-              widgetColor: Colors.blue,
-              widgetSize: Size(300, 200 / 3),
-            ),
-            ColorWidget(
-              widgetName: '',
-              widgetColor: Colors.red,
-              widgetSize: Size(300, 200 / 3),
-            ),
+            for (int i = 0; i < colors.length; i++)
+              ColorWidget(
+                widgetName: '',
+                widgetColor: colors[i],
+                widgetSize: const Size(100, 200),
+              )
           ],
         ),
       ),
