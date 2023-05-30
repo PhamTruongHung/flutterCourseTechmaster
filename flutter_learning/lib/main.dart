@@ -41,7 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: Colors.grey,
+        // color: Colors.white,
+        decoration:
+            BoxDecoration(border: Border.all(color: Colors.grey, width: 1)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
