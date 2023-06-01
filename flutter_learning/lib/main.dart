@@ -64,7 +64,7 @@ Keno findMaxCount(List<Keno> kenos) {
     throw Exception('List is empty');
   }
 
-  Keno maxKeno = kenos[0]; // Assume the first element has the maximum count
+  Keno maxKeno = kenos[0]; 
 
   for (var i = 1; i < kenos.length; i++) {
     if (kenos[i].count > maxKeno.count) {
