@@ -33,14 +33,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    List<Keno> statistic = [Keno('Chan', 5), Keno('Le', 2), Keno('Hoa CL', 3)];
-    statistic.sort();
-    int kenoCountMax = findMaxCount(statistic).count;
-
-    List<Widget> kenoTable = [];
-    for (var keno in statistic) {
-      kenoTable.add(KenoRow(keno: keno, kenoCountMax: kenoCountMax));
-    }
     return Scaffold(
       body: Center(
         child: Container(
@@ -50,116 +42,110 @@ class _MyHomePageState extends State<MyHomePage> {
           decoration:
               BoxDecoration(border: Border.all(color: Colors.red, width: 2)),
           alignment: Alignment.center,
-          child: Column(
-            children: kenoTable,
-          ),
+          child: const CoVietNamXua(),
         ),
       ),
     );
   }
 }
 
-Keno findMaxCount(List<Keno> kenos) {
-  if (kenos.isEmpty) {
-    throw Exception('List is empty');
-  }
-
-  Keno maxKeno = kenos[0]; 
-
-  for (var i = 1; i < kenos.length; i++) {
-    if (kenos[i].count > maxKeno.count) {
-      maxKeno = kenos[i];
-    }
-  }
-
-  return maxKeno;
-}
-
-class KenoRow extends StatelessWidget {
-  final Keno keno;
-  final int kenoCountMax;
-  const KenoRow({super.key, required this.keno, required this.kenoCountMax});
+class CoVietNamXua extends StatelessWidget {
+  const CoVietNamXua({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                flex: 8,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(keno.text),
-                      ),
-                    ),
-                    Expanded(
-                        flex: 6,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: keno.count,
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                height: 5,
-                                decoration: const BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(3),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: kenoCountMax - keno.count,
-                              child: const SizedBox(),
-                            ),
-                          ],
-                        ))
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  alignment: Alignment.centerRight,
-                  child: Text('${keno.count} Lan'),
-                ),
-              ),
-            ],
+    return Stack(
+      children: [
+        const Positioned(
+          top: 0,
+          child: ColorWidget(
+            widgetName: '',
+            widgetColor: Colors.red,
+            widgetSize: Size(300, 100),
           ),
-          const Divider(
-            thickness: 1,
-            color: Colors.grey,
+        ),
+        Positioned(
+          top: 100,
+          child: ColorWidget(
+            widgetName: '',
+            widgetColor: Colors.blue[600]!,
+            widgetSize: const Size(300, 100),
           ),
-        ],
-      ),
+        ),
+        const Positioned(
+          top: 50,
+          left: 100,
+          child: Icon(
+            Icons.star,
+            size: 100,
+            color: Colors.yellow,
+          ),
+        ),
+      ],
     );
   }
 }
 
-class Keno implements Comparable<Keno> {
-  final String text;
-  final int count;
-
-  Keno(this.text, this.count);
+class CoThuyDien extends StatelessWidget {
+  const CoThuyDien({
+    super.key,
+  });
 
   @override
-  int compareTo(Keno other) {
-    if (count > other.count) {
-      return -1;
-    } else if (count < other.count) {
-      return 1;
-    } else {
-      return text.compareTo(other.text);
-    }
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ColorWidget(
+          widgetName: '',
+          widgetColor: Colors.lightBlue[900]!,
+          widgetSize: const Size(300, 200),
+        ),
+        Positioned(
+          left: 100,
+          child: ColorWidget(
+            widgetName: '',
+            widgetColor: Colors.yellow[600]!,
+            widgetSize: const Size(30, 200),
+          ),
+        ),
+        Positioned(
+          top: 85,
+          child: ColorWidget(
+            widgetName: '',
+            widgetColor: Colors.yellow[600]!,
+            widgetSize: const Size(300, 30),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ColorWidget extends StatelessWidget {
+  const ColorWidget(
+      {super.key,
+      required this.widgetName,
+      required this.widgetColor,
+      required this.widgetSize,
+      this.left,
+      this.top,
+      this.right,
+      this.bottom});
+  final String widgetName;
+  final Color widgetColor;
+  final Size widgetSize;
+  final double? left;
+  final double? top;
+  final double? right;
+  final double? bottom;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      color: widgetColor,
+      width: widgetSize.width,
+      height: widgetSize.height,
+      child: Text(widgetName),
+    );
   }
 }
