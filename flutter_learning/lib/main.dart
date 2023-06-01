@@ -35,14 +35,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          width: 900,
-          height: 300,
-          padding: const EdgeInsets.all(20),
-          decoration:
-              BoxDecoration(border: Border.all(color: Colors.red, width: 2)),
-          alignment: Alignment.center,
-          child: const CoVietNamXua(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 900,
+              height: 300,
+              alignment: Alignment.center,
+              child: const CoVietNamXua(),
+            ),
+            Container(
+              width: 900,
+              height: 300,
+              alignment: Alignment.center,
+              child: const CoThuyDien(),
+            ),
+          ],
         ),
       ),
     );
