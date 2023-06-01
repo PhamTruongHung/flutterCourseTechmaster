@@ -42,12 +42,14 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               width: 900,
               height: 300,
+              decoration: BoxDecoration(border: Border.all(color: Colors.red)),
               alignment: Alignment.center,
               child: const CoVietNamXua(),
             ),
             Container(
               width: 900,
               height: 300,
+              decoration: BoxDecoration(border: Border.all(color: Colors.red)),
               alignment: Alignment.center,
               child: const CoThuyDien(),
             ),
@@ -63,29 +65,26 @@ class CoVietNamXua extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return const Stack(
       children: [
-        const Positioned(
-          top: 0,
+        ColorWidget(
+          widgetName: '',
+          widgetColor: Colors.red,
+          widgetSize: Size(300, 200),
+        ),
+        Positioned(
+          // bottom: 0,
           child: ColorWidget(
             widgetName: '',
-            widgetColor: Colors.red,
+            widgetColor: Colors.blue,
             widgetSize: Size(300, 100),
           ),
         ),
         Positioned(
-          top: 100,
-          child: ColorWidget(
-            widgetName: '',
-            widgetColor: Colors.blue[600]!,
-            widgetSize: const Size(300, 100),
-          ),
-        ),
-        const Positioned(
           top: 50,
           left: 100,
           child: Icon(
-            Icons.star,
+            Icons.star_rate,
             size: 100,
             color: Colors.yellow,
           ),
@@ -151,6 +150,7 @@ class ColorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
+      // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
       color: widgetColor,
       width: widgetSize.width,
       height: widgetSize.height,
