@@ -2,7 +2,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_learning/models/text_field.dart';
 
 void main() {
   runApp(const MyApp());
@@ -82,18 +81,31 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 height: 30,
               ),
-              SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint(accountControler.text);
-                    debugPrint(passwordControler.text);
-                  },
-                  // style: ButtonStyle(backgroundColor: Colors.accents),
-                  child: Text('Tiep tuc'),
+              InkWell(
+                onTap: () {
+                  debugPrint(accountControler.text);
+                  debugPrint(passwordControler.text);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.red,
+                          offset: Offset(2, 2),
+                          blurRadius: 10),
+                    ],
+                    borderRadius: BorderRadius.circular(25),
+                    color: Colors.red,
+                  ),
+                  child: Text(
+                    'Tiep tuc',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         ),
