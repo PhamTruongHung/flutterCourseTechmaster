@@ -10,7 +10,7 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      height: 400,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +63,11 @@ class Avatar extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(2.0),
-              child: Text(user.name),
+              child: Text(
+                user.phoneNumber!,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+              ),
             ),
           )
         ],

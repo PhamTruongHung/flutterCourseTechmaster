@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Thong tin ca nhan'),
     );
   }
 }
@@ -38,10 +38,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  User user = User(name: 'name');
+  User user = User(
+      name: 'Pham Truong Hung',
+      phoneNumber: '0396153230',
+      email: 'trh.bkdn@gmail.com',
+      sex: CustomSex.nam,
+      address: 'address',
+      dateOfBirth: 'dateOfBirth');
 
   TextEditingController nameControler = TextEditingController();
-  TextEditingController passwordControler = TextEditingController();
+  TextEditingController phoneNumberControler = TextEditingController();
+  TextEditingController emailControler = TextEditingController();
+  TextEditingController sexControler = TextEditingController();
+  TextEditingController addressControler = TextEditingController();
+  TextEditingController dateOfBirthControler = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.white,
         ),
         title: Text(
-          'Thong tin ca nhan',
+          widget.title,
           textAlign: TextAlign.start,
           style: TextStyle(color: Colors.white),
         ),
@@ -74,7 +84,63 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Avatar(user: user),
-              CustomTextField(controller: nameControler, lable: 'Ho va ten')
+              SizedBox(
+                height: 30,
+              ),
+              CustomTextField(
+                controller: nameControler,
+                lable: 'Ho va ten',
+                defaultValue: user.name,
+              ),
+              CustomTextField(
+                controller: dateOfBirthControler,
+                lable: 'Ngay sinh',
+                defaultValue: user.dateOfBirth,
+                suffixIcon: Icon(Icons.calendar_today_outlined),
+                onSuffixIconClick: () {
+                  debugPrint(
+                      'Show pop-up to Change date of birth - callBackFucntion!!!');
+                },
+              ),
+              CustomTextField(
+                controller: emailControler,
+                lable: 'Email (khong bat buoc)',
+                defaultValue: user.email,
+              ),
+              CustomTextField(
+                controller: addressControler,
+                lable: 'Dia chi',
+                defaultValue: user.address,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                padding: EdgeInsets.all(8),
+                alignment: Alignment.center,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: Colors.red,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.red,
+                          offset: Offset(2, 2),
+                          blurRadius: 10)
+                    ],
+                    borderRadius: BorderRadius.all(Radius.circular(25))),
+                child: InkWell(
+                  child: Text(
+                    'Luu thay doi',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  onTap: () {
+                    debugPrint('Luu thay doi!!!');
+                  },
+                ),
+              )
             ],
           ),
         ),

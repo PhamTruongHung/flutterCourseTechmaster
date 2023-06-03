@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -5,6 +6,8 @@ class CustomTextField extends StatelessWidget {
   final Icon? suffixIcon;
   final bool obscureText;
   final String lable;
+  final String? defaultValue;
+  final VoidCallback? onSuffixIconClick;
 
   const CustomTextField({
     Key? key,
@@ -12,10 +15,15 @@ class CustomTextField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     required this.lable,
+    this.defaultValue,
+    this.onSuffixIconClick,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (defaultValue != null) {
+      controller.text = defaultValue!;
+    }
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Column(
@@ -36,7 +44,10 @@ class CustomTextField extends StatelessWidget {
                     Radius.circular(10),
                   ),
                 ),
-                suffixIcon: suffixIcon,
+                suffixIcon: suffixIcon != null && onSuffixIconClick != null
+                    ? IconButton(
+                        onPressed: onSuffixIconClick, icon: suffixIcon!)
+                    : null,
               ),
             ),
           ),
