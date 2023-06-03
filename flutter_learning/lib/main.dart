@@ -76,72 +76,162 @@ class _MyHomePageState extends State<MyHomePage> {
               ))
         ],
       ),
-      body: Center(
-        child: SizedBox(
-          height: double.infinity,
-          width: 400,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Avatar(user: user),
-              SizedBox(
-                height: 30,
-              ),
-              CustomTextField(
-                controller: nameControler,
-                lable: 'Ho va ten',
-                defaultValue: user.name,
-              ),
-              CustomTextField(
-                controller: dateOfBirthControler,
-                lable: 'Ngay sinh',
-                defaultValue: user.dateOfBirth,
-                suffixIcon: Icon(Icons.calendar_today_outlined),
-                onSuffixIconClick: () {
-                  debugPrint(
-                      'Show pop-up to Change date of birth - callBackFucntion!!!');
-                },
-              ),
-              CustomTextField(
-                controller: emailControler,
-                lable: 'Email (khong bat buoc)',
-                defaultValue: user.email,
-              ),
-              CustomTextField(
-                controller: addressControler,
-                lable: 'Dia chi',
-                defaultValue: user.address,
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                padding: EdgeInsets.all(8),
-                alignment: Alignment.center,
-                height: 50,
-                decoration: BoxDecoration(
-                    color: Colors.red,
-                    boxShadow: [
-                      BoxShadow(
+      body: Container(
+        color: Colors.grey[100],
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                height: 1000,
+                width: 600,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Avatar(user: user),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    CustomTextField(
+                      controller: nameControler,
+                      lable: 'Ho va ten',
+                      defaultValue: user.name,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CustomTextField(
+                            controller: dateOfBirthControler,
+                            lable: 'Ngay sinh',
+                            defaultValue: user.dateOfBirth,
+                            suffixIcon: Icon(Icons.calendar_today_outlined),
+                            onSuffixIconClick: () {
+                              debugPrint(
+                                  'Show pop-up to Change date of birth - callBackFucntion!!!');
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.all(8),
+                            alignment: Alignment.topLeft,
+                            height: 78,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Gioi tinh',
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: user.sex == CustomSex.nam
+                                                ? Colors.black
+                                                : Colors.white,
+                                            border:
+                                                Border.all(color: Colors.grey),
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              bottomLeft: Radius.circular(10),
+                                            ),
+                                          ),
+                                          height: 100,
+                                          child: Text(
+                                            'Nam',
+                                            style: TextStyle(
+                                              color: user.sex == CustomSex.nam
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: user.sex == CustomSex.nu
+                                                ? Colors.black
+                                                : Colors.white,
+                                            border:
+                                                Border.all(color: Colors.grey),
+                                            borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(10),
+                                              bottomRight: Radius.circular(10),
+                                            ),
+                                          ),
+                                          height: 100,
+                                          child: Text(
+                                            'Nu',
+                                            style: TextStyle(
+                                              color: user.sex == CustomSex.nu
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    CustomTextField(
+                      controller: emailControler,
+                      lable: 'Email (Khong bat buoc)',
+                      defaultValue: user.email,
+                    ),
+                    CustomTextField(
+                      controller: addressControler,
+                      lable: 'Dia chi',
+                      defaultValue: user.address,
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16),
+                      alignment: Alignment.center,
+                      height: 50,
+                      decoration: BoxDecoration(
                           color: Colors.red,
-                          offset: Offset(2, 2),
-                          blurRadius: 10)
-                    ],
-                    borderRadius: BorderRadius.all(Radius.circular(25))),
-                child: InkWell(
-                  child: Text(
-                    'Luu thay doi',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  onTap: () {
-                    debugPrint('Luu thay doi!!!');
-                  },
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.red,
+                                offset: Offset(2, 2),
+                                blurRadius: 10)
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                      child: InkWell(
+                        child: Text(
+                          'Luu thay doi',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: () {
+                          debugPrint('Luu thay doi!!!');
+                        },
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
+              ),
+            ),
           ),
         ),
       ),

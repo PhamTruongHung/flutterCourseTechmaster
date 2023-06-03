@@ -25,7 +25,7 @@ class CustomTextField extends StatelessWidget {
       controller.text = defaultValue!;
     }
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,6 +39,8 @@ class CustomTextField extends StatelessWidget {
               controller: controller,
               obscureText: obscureText,
               decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
