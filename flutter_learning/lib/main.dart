@@ -2,6 +2,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_learning/models/text_field.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,68 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           width: 400,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Dang nhap',
-                style: TextStyle(fontSize: 40),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: accountControler,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: passwordControler,
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                  suffixIcon: Icon(Icons.remove_red_eye_outlined),
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              InkWell(
-                onTap: () {
-                  debugPrint(accountControler.text);
-                  debugPrint(passwordControler.text);
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.red,
-                          offset: Offset(2, 2),
-                          blurRadius: 10),
-                    ],
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.red,
-                  ),
-                  child: Text(
-                    'Tiep tuc',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                ),
-              )
-            ],
+            children: [],
           ),
         ),
       ),
