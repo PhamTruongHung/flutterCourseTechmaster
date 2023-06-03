@@ -2,7 +2,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_learning/models/avatar.dart';
 import 'package:flutter_learning/models/text_field.dart';
+import 'package:flutter_learning/models/user.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -35,18 +38,44 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController accountControler = TextEditingController();
+  User user = User(name: 'name');
+
+  TextEditingController nameControler = TextEditingController();
   TextEditingController passwordControler = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(
+          color: Colors.white,
+        ),
+        title: Text(
+          'Thong tin ca nhan',
+          textAlign: TextAlign.start,
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red,
+        actions: [
+          IconButton(
+              onPressed: () {
+                debugPrint('Log out action');
+              },
+              icon: Icon(
+                Icons.logout,
+                color: Colors.white,
+              ))
+        ],
+      ),
       body: Center(
         child: SizedBox(
           height: double.infinity,
           width: 400,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [],
+            children: [
+              Avatar(user: user),
+              CustomTextField(controller: nameControler, lable: 'Ho va ten')
+            ],
           ),
         ),
       ),
