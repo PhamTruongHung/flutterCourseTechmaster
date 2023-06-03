@@ -7,7 +7,7 @@ class User {
   final String? email;
   final CustomSex? sex;
   final String? address;
-  final String? dateOfBirth;
+  final DateTime? dateOfBirth;
 
   User({
     bool? isUpload,

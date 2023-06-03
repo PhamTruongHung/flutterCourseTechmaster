@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learning/models/avatar.dart';
 import 'package:flutter_learning/models/text_field.dart';
 import 'package:flutter_learning/models/user.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
       email: 'trh.bkdn@gmail.com',
       sex: CustomSex.nam,
       address: 'address',
-      dateOfBirth: 'dateOfBirth');
+      dateOfBirth: DateTime.now());
 
   TextEditingController nameControler = TextEditingController();
   TextEditingController phoneNumberControler = TextEditingController();
@@ -103,7 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: CustomTextField(
                             controller: dateOfBirthControler,
                             lable: 'Ngay sinh',
-                            defaultValue: user.dateOfBirth,
+                            defaultValue: DateFormat('dd/MM/yyyy')
+                                .format(user.dateOfBirth!),
                             suffixIcon: Icon(Icons.calendar_today_outlined),
                             onSuffixIconClick: () {
                               debugPrint(
