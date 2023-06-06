@@ -1,70 +1,33 @@
 void main() async {
   Solution solution = Solution();
 
-  List<int> bills = [5, 5, 5, 10, 20];
+  int area = 100;
   // List<int> bills = [5, 5, 10, 10, 20];
 
-  print('\n Final result: ${solution.lemonadeChange(bills)}');
+  print('\n Final result: ${solution.constructRectangle(area)}');
 }
 
 class Solution {
-  bool lemonadeChange(List<int> bills) {
-    int count5 = 0;
-    int count10 = 0;
-    int count20 = 0;
-    int cashBack = 0;
+  List<int> constructRectangle(int area) {
+    List<List<int>> possibleResults = [];
 
-    bool result = true;
+    List<int> tmpResult = [0, 0];
 
-    for (var bill in bills) {
-      print('Start bill----');
-      //Thu tien
-      switch (bill) {
-        case 5:
-          count5 = count5 + 1;
-          break;
-        case 10:
-          count10 = count10 + 1;
-          break;
-        case 20:
-          count20 = count20 + 1;
-          break;
-        default:
+    for (var i = 1; i < area; i++) {
+      if (area % i == 0) {
+        if (i >= (area ~/ i)) {
+          tmpResult[0] = i; //L
+          tmpResult[1] = area ~/ i; //W
+          print(tmpResult);
+          possibleResults.add(tmpResult);
+        }
       }
-
-      //Tinh tien thoi
-      cashBack = bill - 5;
-
-      print(
-          'Bill $bill -  Start cashBack: $cashBack - 20: $count20 - 10: $count10 - 5: $count5');
-
-      //Thoi tien
-
-      while (cashBack >= 20 && count20 > 0) {
-        cashBack = cashBack - 20;
-        count20 = count20 - 1;
-      }
-
-      while (cashBack >= 10 && count10 > 0) {
-        cashBack = cashBack - 10;
-        count10 = count10 - 1;
-      }
-      while (cashBack >= 5 && count5 > 0) {
-        cashBack = cashBack - 5;
-        count5 = count5 - 1;
-      }
-      print(
-          'Bill $bill -  Current cashBack: $cashBack - 20: $count20 - 10: $count10 - 5: $count5');
-
-      if (count20 >= 0 && count10 >= 0 && count5 >= 0 && cashBack == 0) {
-        print(true);
-        result = result || true;
-      } else {
-        return false;
-      }
-      print('End bill---- \n');
     }
 
-    return true;
+    print(possibleResults);
+
+    List<int> bestResult = [];
+
+    return bestResult;
   }
 }
