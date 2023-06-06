@@ -1,36 +1,34 @@
-import 'dart:convert';
-
-import 'package:dart_learning/buoi1234/repo.dart';
-import 'package:dart_learning/buoi6/screen_size.dart';
-import 'package:dart_learning/buoi7/queue_genetics.dart';
-import 'package:dart_learning/buoi7/respone_object.dart';
-import 'package:http/http.dart' as http;
-
 void main() async {
-  print('\n-------------Buoi 7 - Bai 1---------------\n');
-  Future<http.Response> fetchData() {
-    return http.get(Uri.parse('http://api.quynhtao.com/api/issues?limit=5'));
+  Solution solution = Solution();
+
+  print(solution.fizzBuzz(10000));
+}
+
+class Solution {
+  List<String> fizzBuzz(int n) {
+    List<String> result = [];
+    int index = 1;
+    while (index <= n) {
+      if (divisibleBy3(index) && !divisibleBy5(index)) {
+        result.add("Fizz");
+      } else if (divisibleBy5(index) && !divisibleBy3(index)) {
+        result.add("Buzz");
+      } else if (divisibleBy3(index) && divisibleBy5(index)) {
+        result.add("FizzBuzz");
+      } else {
+        result.add(index.toString());
+      }
+      // print('$index - $result');
+      index++;
+    }
+    return result;
   }
+}
 
-  await fetchData().then((value) {
-    var jsonDataList = jsonDecode(value.body.toString());
-    ResponeObject responeObject = ResponeObject.fromMap(jsonDataList);
-    print(responeObject.toString());
-  });
+bool divisibleBy3(int n) {
+  return n % 3 == 0 ? true : false;
+}
 
-  print('\n-------------Buoi 7 - Bai 2---------------\n');
-  num numVar = 32;
-  print(numVar.scaleWitdh());
-
-  print('\n-------------Buoi 7 - Bai 3---------------\n');
-
-  QueueGenerics queueGenerics = QueueGenerics(capacity: 10);
-  queueGenerics.enqueue('value');
-  queueGenerics.enqueue(1);
-  print(queueGenerics.toString());
-
-  print('\n-------------Buoi 7 - Bai 4---------------\n');
-  List<int> listBuoi7Bai4 = [0, 1, 2, 3, 4];
-  listBuoi7Bai4 = swapTwoElement(listBuoi7Bai4, 1, 2);
-  print(listBuoi7Bai4);
+bool divisibleBy5(int n) {
+  return n % 5 == 0 ? true : false;
 }
