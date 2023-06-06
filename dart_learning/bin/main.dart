@@ -1,21 +1,24 @@
 void main() async {
   Solution solution = Solution();
 
-  print(solution.isPerfectSquare(9));
+  print(solution.isPowerOfTwo(1));
 }
 
 class Solution {
-  bool isPerfectSquare(int num) {
-    int index = 1;
-    int currentSquare = 0;
+  bool isPowerOfTwo(int n) {
+    int currentPowerOfTwo = 1;
 
-    while (currentSquare <= num) {
-      currentSquare = index * index;
-      index++;
-      if (currentSquare == num) {
+    if (n == 1) {
+      return true;
+    }
+
+    while (currentPowerOfTwo <= n) {
+      currentPowerOfTwo = currentPowerOfTwo * 2;
+      if (currentPowerOfTwo == n) {
         return true;
       }
     }
+
     return false;
   }
 }
