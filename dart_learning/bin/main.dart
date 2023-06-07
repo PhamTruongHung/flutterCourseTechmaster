@@ -1,23 +1,20 @@
 void main() async {
   Solution solution = Solution();
 
-  print(solution.countDigits(121));
+  print(solution.largestOddNumber(2212234233524352122.toString()));
 }
 
 class Solution {
-  int countDigits(int n) {
-    // List<String> uniqueList = n.toString().split('').toSet().toList();
-    List<String> uniqueList = n.toString().split('');
-    print(uniqueList);
+  String largestOddNumber(String num) {
+    List<String> listOfStr = num.split('').toList();
 
-    int result = 0;
-
-    for (var digit in uniqueList) {
-      if (n % int.parse(digit) == 0) {
-        result = result + 1;
+    for (var i = listOfStr.length - 1; i >= 0; i--) {
+      print(listOfStr[i]);
+      if (int.parse(listOfStr[i]).isOdd) {
+        return listOfStr.sublist(0, i + 1).join();
       }
     }
 
-    return result;
+    return '';
   }
 }
