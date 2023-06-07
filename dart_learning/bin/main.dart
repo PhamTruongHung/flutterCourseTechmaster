@@ -1,33 +1,31 @@
 void main() async {
   Solution solution = Solution();
 
-  int area = 100;
-  // List<int> bills = [5, 5, 10, 10, 20];
+  int area = 37;
 
   print('\n Final result: ${solution.constructRectangle(area)}');
 }
 
 class Solution {
   List<int> constructRectangle(int area) {
-    List<List<int>> possibleResults = [];
+    List<int> bestResult = [0, 0];
 
-    List<int> tmpResult = [0, 0];
+    int currentDiff = 100000000000000000;
+    int tmpL = 0;
+    int tmpW = 0;
 
-    for (var i = 1; i < area; i++) {
+    for (var i = 1; i <= area; i++) {
       if (area % i == 0) {
-        if (i >= (area ~/ i)) {
-          tmpResult[0] = i; //L
-          tmpResult[1] = area ~/ i; //W
-          print(tmpResult);
-          possibleResults.add(tmpResult);
+        tmpL = i;
+        tmpW = area ~/ i;
+        if (tmpL >= tmpW && ((tmpL - tmpW) < currentDiff)) {
+          bestResult[0] = tmpL; //L
+          bestResult[1] = tmpW; //W
+
+          currentDiff = tmpL - tmpW;
         }
       }
     }
-
-    print(possibleResults);
-
-    List<int> bestResult = [];
-
     return bestResult;
   }
 }
