@@ -1,31 +1,24 @@
 void main() async {
   Solution solution = Solution();
 
-  int area = 37;
-
-  print('\n Final result: ${solution.constructRectangle(area)}');
+  print(solution.isPowerOfFour(5));
 }
 
 class Solution {
-  List<int> constructRectangle(int area) {
-    List<int> bestResult = [0, 0];
+  bool isPowerOfFour(int n) {
+    int currentPowerOfTwo = 1;
 
-    int currentDiff = 100000000000000000;
-    int tmpL = 0;
-    int tmpW = 0;
+    if (n == 1) {
+      return true;
+    }
 
-    for (var i = 1; i <= area; i++) {
-      if (area % i == 0) {
-        tmpL = i;
-        tmpW = area ~/ i;
-        if (tmpL >= tmpW && ((tmpL - tmpW) < currentDiff)) {
-          bestResult[0] = tmpL; //L
-          bestResult[1] = tmpW; //W
-
-          currentDiff = tmpL - tmpW;
-        }
+    while (currentPowerOfTwo <= n) {
+      currentPowerOfTwo = currentPowerOfTwo * 4;
+      if (currentPowerOfTwo == n) {
+        return true;
       }
     }
-    return bestResult;
+
+    return false;
   }
 }
