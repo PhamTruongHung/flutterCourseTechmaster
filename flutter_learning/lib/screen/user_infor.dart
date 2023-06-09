@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learning/models/avatar.dart';
 import 'package:flutter_learning/models/text_field.dart';
-import 'package:flutter_learning/models/user.dart';
+import 'package:flutter_learning/models/user_infor.dart';
 import 'package:intl/intl.dart';
 
 class UserInforScreen extends StatefulWidget {
@@ -14,7 +14,7 @@ class UserInforScreen extends StatefulWidget {
 }
 
 class _UserInforScreenState extends State<UserInforScreen> {
-  User user = User(
+  UserInfor user = UserInfor(
       name: 'Pham Truong Hung',
       phoneNumber: '0396153230',
       email: 'trh.bkdn@gmail.com',

@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class User {
+class UserInfor {
   final String name;
   final String? avatarUrl;
   final bool isUpload;
@@ -9,7 +9,7 @@ class User {
   final String? address;
   final DateTime? dateOfBirth;
 
-  User({
+  UserInfor({
     bool? isUpload,
     required this.name,
     this.avatarUrl,

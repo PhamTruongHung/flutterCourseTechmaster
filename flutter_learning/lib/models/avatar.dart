@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_learning/models/user.dart';
+import 'package:flutter_learning/models/user_infor.dart';
 
 class Avatar extends StatelessWidget {
-  final User user;
+  final UserInfor user;
   const Avatar({super.key, required this.user});
 
   @override
@@ -82,7 +82,7 @@ class NameBuildAvatar extends StatelessWidget {
     required this.user,
   });
 
-  final User user;
+  final UserInfor user;
 
   @override
   Widget build(BuildContext context) {
