@@ -48,20 +48,52 @@ class _MyWidgetState extends State<MyWidget> {
       users.add(User.fromJson(userJson));
     }
     return Scaffold(
-      appBar: AppBar(
-        title: Text(''),
-      ),
-      body: ListView.separated(
-        itemCount: users.length,
-        separatorBuilder: (BuildContext context, int index) {
-          return Divider();
-        },
-        itemBuilder: (BuildContext context, int index) {
-          return userItem(users[index]);
-        },
+      body: Center(
+        child: Container(
+          alignment: Alignment.center,
+          color: Colors.grey,
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 8,
+            ),
+            itemCount: 64,
+            itemBuilder: (BuildContext context, int index) {
+              return chessCell(index);
+            },
+          ),
+        ),
       ),
     );
   }
+}
+
+Widget chessCell(int cellIndex) {
+  int row = cellIndex ~/ 8;
+  int column = cellIndex % 8;
+  bool isBlack = false;
+
+  if ((row + column) % 2 == 0) {
+    isBlack = true;
+  } else {
+    isBlack = false;
+  }
+
+  return Container(
+    height: 10,
+    width: 10,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(0),
+      color: isBlack ? Colors.black : Colors.white,
+    ),
+  );
+}
+
+int convertToCol(int index) {
+  return index % 8;
+}
+
+int convertToRow(int index) {
+  return index ~/ 8;
 }
 
 Widget userItem(User user) {
