@@ -51,15 +51,21 @@ class _MyWidgetState extends State<MyWidget> {
       body: Center(
         child: Container(
           alignment: Alignment.center,
-          color: Colors.grey,
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 8,
+          child: Container(
+            height: 500,
+            width: 500,
+            padding: EdgeInsets.all(20),
+            alignment: Alignment.center,
+            color: Colors.grey,
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 8,
+              ),
+              itemCount: 64,
+              itemBuilder: (BuildContext context, int index) {
+                return chessCell(index);
+              },
             ),
-            itemCount: 64,
-            itemBuilder: (BuildContext context, int index) {
-              return chessCell(index);
-            },
           ),
         ),
       ),
