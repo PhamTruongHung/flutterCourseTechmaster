@@ -1,10 +1,13 @@
+// ignore_for_file: unused_import
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_learning/models/user.dart';
 import 'package:flutter_learning/models/user_infor.dart';
 
 class Avatar extends StatelessWidget {
-  final UserInfor user;
+  final User user;
   const Avatar({super.key, required this.user});
 
   @override
@@ -20,12 +23,12 @@ class Avatar extends StatelessWidget {
             child: Stack(
               alignment: Alignment.bottomRight,
               children: [
-                user.avatarUrl == null
+                user.avatar == null
                     ? NameBuildAvatar(user: user)
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: Image.network(
-                          user.avatarUrl!,
+                          user.avatar!,
                           width: 200,
                           height: 200,
                           loadingBuilder: (BuildContext context, Widget child,
@@ -49,10 +52,10 @@ class Avatar extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                    color: user.isUpload ? Colors.white : null,
+                    color: user.isUpload! ? Colors.white : null,
                   ),
                   child: Icon(
-                    user.isUpload ? Icons.file_upload_outlined : null,
+                    user.isUpload! ? Icons.file_upload_outlined : null,
                     size: 40,
                     color: Colors.red,
                   ),
@@ -82,7 +85,7 @@ class NameBuildAvatar extends StatelessWidget {
     required this.user,
   });
 
-  final UserInfor user;
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +101,7 @@ class NameBuildAvatar extends StatelessWidget {
               borderRadius: BorderRadius.circular(100)),
         ),
         Text(
-          user.name.characters.first.toUpperCase(),
+          user.name!.characters.first.toUpperCase(),
           style: const TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,

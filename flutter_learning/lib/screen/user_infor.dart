@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_learning/models/avatar.dart';
 import 'package:flutter_learning/models/text_field.dart';
@@ -64,7 +66,7 @@ class _UserInforScreenState extends State<UserInforScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Avatar(user: user),
+                    // Avatar(user: user),
                     const SizedBox(
                       height: 30,
                     ),
