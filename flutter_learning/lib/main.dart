@@ -92,13 +92,6 @@ class _MemoryGameState extends State<MemoryGame> {
   int currentMemoryObjectIndex = -1;
   @override
   void initState() {
-    // memoryCardObject.add(dogs[Random().nextInt(dogs.length)]);
-    // memoryCardObject.add(dogs[Random().nextInt(dogs.length)]);
-    // memoryCardObject.add(chickens[Random().nextInt(chickens.length)]);
-    // memoryCardObject.add(chickens[Random().nextInt(chickens.length)]);
-    // memoryCardObject.add(cats[Random().nextInt(cats.length)]);
-    // memoryCardObject.add(cats[Random().nextInt(cats.length)]);
-
     memoryCardObject.addAll(pickRandomItems(dogs, 2));
     memoryCardObject.addAll(pickRandomItems(chickens, 2));
     memoryCardObject.addAll(pickRandomItems(cats, 2));
@@ -119,16 +112,38 @@ class _MemoryGameState extends State<MemoryGame> {
           return MemoryCardItem(
             index: index,
             memoryCardObject: memoryCardObject[index],
-            getTappedIndex: (tappedIndex) {
+            getTappedIndex: (tappedIndex) async {
               setState(() {
                 previousMemoryObjectIndex = currentMemoryObjectIndex;
                 currentMemoryObjectIndex = tappedIndex;
               });
+
+              debugPrint('Start delay!');
+              await Future.delayed(const Duration(milliseconds: 300));
+              debugPrint('Stop delay!');
+              setState(() {
+                memoryCardObject[tappedIndex].isShow = false;
+              });
               if (currentMemoryObjectIndex != -1 &&
-                  previousMemoryObjectIndex != -1) {
+                  previousMemoryObjectIndex != -1 &&
+                  currentMemoryObjectIndex != previousMemoryObjectIndex) {
+                // await Future.delayed(const Duration(seconds: 2));
+                debugPrint(
+                    '${memoryCardObject[previousMemoryObjectIndex].animalType}');
+                debugPrint(
+                    '${memoryCardObject[currentMemoryObjectIndex].animalType}');
                 if (memoryCardObject[currentMemoryObjectIndex].animalType ==
                     memoryCardObject[previousMemoryObjectIndex].animalType) {
                   debugPrint('Same!!!');
+                  setState(() {
+                    memoryCardObject[previousMemoryObjectIndex].isShow = true;
+                    memoryCardObject[currentMemoryObjectIndex].isShow = true;
+                  });
+                } else {
+                  setState(() {
+                    // memoryCardObject[previousMemoryObjectIndex].isShow = false;
+                    // memoryCardObject[currentMemoryObjectIndex].isShow = false;
+                  });
                 }
               }
             },
@@ -165,8 +180,8 @@ class _MemoryCardItemState extends State<MemoryCardItem> {
         highlightColor: Colors.white,
         onTap: () {
           debugPrint('----------------------------');
-          debugPrint(
-              '_MemoryCardItemState - onTap - ${widget.memoryCardObject.animalType}');
+          // debugPrint(
+          //     '_MemoryCardItemState - onTap - ${widget.memoryCardObject.animalType}');
           widget.getTappedIndex(widget.index);
           setState(() {
             widget.memoryCardObject.isShow = !widget.memoryCardObject.isShow;
