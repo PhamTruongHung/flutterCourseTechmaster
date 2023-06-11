@@ -92,12 +92,16 @@ class _MemoryGameState extends State<MemoryGame> {
   int currentMemoryObjectIndex = -1;
   @override
   void initState() {
-    memoryCardObject.add(dogs[Random().nextInt(dogs.length)]);
-    memoryCardObject.add(dogs[Random().nextInt(dogs.length)]);
-    memoryCardObject.add(chickens[Random().nextInt(chickens.length)]);
-    memoryCardObject.add(chickens[Random().nextInt(chickens.length)]);
-    memoryCardObject.add(cats[Random().nextInt(cats.length)]);
-    memoryCardObject.add(cats[Random().nextInt(cats.length)]);
+    // memoryCardObject.add(dogs[Random().nextInt(dogs.length)]);
+    // memoryCardObject.add(dogs[Random().nextInt(dogs.length)]);
+    // memoryCardObject.add(chickens[Random().nextInt(chickens.length)]);
+    // memoryCardObject.add(chickens[Random().nextInt(chickens.length)]);
+    // memoryCardObject.add(cats[Random().nextInt(cats.length)]);
+    // memoryCardObject.add(cats[Random().nextInt(cats.length)]);
+
+    memoryCardObject.addAll(pickRandomItems(dogs, 2));
+    memoryCardObject.addAll(pickRandomItems(chickens, 2));
+    memoryCardObject.addAll(pickRandomItems(cats, 2));
 
     memoryCardObject.shuffle(Random());
     super.initState();
@@ -105,8 +109,6 @@ class _MemoryGameState extends State<MemoryGame> {
 
   @override
   Widget build(BuildContext context) {
-    // int previousMemoryObjectIndex = -1;
-    // int currentMemoryObjectIndex = -1;
     return Scaffold(
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -118,20 +120,17 @@ class _MemoryGameState extends State<MemoryGame> {
             index: index,
             memoryCardObject: memoryCardObject[index],
             getTappedIndex: (tappedIndex) {
-              debugPrint(
-                  '$currentMemoryObjectIndex - $previousMemoryObjectIndex');
-              if (currentMemoryObjectIndex != -1 &&
-                  previousMemoryObjectIndex != -1) {
-                debugPrint(
-                    memoryCardObject[previousMemoryObjectIndex].toString());
-                debugPrint(
-                    memoryCardObject[currentMemoryObjectIndex].toString());
-              }
               setState(() {
                 previousMemoryObjectIndex = currentMemoryObjectIndex;
                 currentMemoryObjectIndex = tappedIndex;
               });
-              debugPrint(tappedIndex.toString());
+              if (currentMemoryObjectIndex != -1 &&
+                  previousMemoryObjectIndex != -1) {
+                if (memoryCardObject[currentMemoryObjectIndex].animalType ==
+                    memoryCardObject[previousMemoryObjectIndex].animalType) {
+                  debugPrint('Same!!!');
+                }
+              }
             },
           );
         },
@@ -165,6 +164,9 @@ class _MemoryCardItemState extends State<MemoryCardItem> {
         splashColor: Colors.white,
         highlightColor: Colors.white,
         onTap: () {
+          debugPrint('----------------------------');
+          debugPrint(
+              '_MemoryCardItemState - onTap - ${widget.memoryCardObject.animalType}');
           widget.getTappedIndex(widget.index);
           setState(() {
             widget.memoryCardObject.isShow = !widget.memoryCardObject.isShow;
@@ -204,6 +206,19 @@ class MemoryCardObject {
   @override
   String toString() =>
       'MemoryCardObject(imageUrl: $imageUrl, animalType: $animalType, isShow: $isShow)';
+}
+
+List<T> pickRandomItems<T>(List<T> items, int count) {
+  List<T> randomItems = [];
+  Random random = Random();
+
+  for (int i = 0; i < count; i++) {
+    int randomIndex = random.nextInt(items.length);
+    randomItems.add(items[randomIndex]);
+    items.removeAt(randomIndex);
+  }
+
+  return randomItems;
 }
 
 enum AnimalType { dog, chicken, cat }
