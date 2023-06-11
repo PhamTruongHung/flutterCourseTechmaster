@@ -134,7 +134,7 @@ class _MemoryGameState extends State<MemoryGame> {
                     '${memoryCardObject[currentMemoryObjectIndex].animalType}');
                 if (memoryCardObject[currentMemoryObjectIndex].animalType ==
                     memoryCardObject[previousMemoryObjectIndex].animalType) {
-                  debugPrint('Same!!!');
+                  debugPrint('Same check!!!');
                   setState(() {
                     memoryCardObject[previousMemoryObjectIndex].isShow = true;
                     memoryCardObject[currentMemoryObjectIndex].isShow = true;
