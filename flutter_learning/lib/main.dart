@@ -92,6 +92,7 @@ class _MemoryGameState extends State<MemoryGame> {
   int currentMemoryObjectIndex = -1;
   @override
   void initState() {
+    memoryCardObject.clear();
     memoryCardObject.addAll(pickRandomItems(dogs, 2));
     memoryCardObject.addAll(pickRandomItems(chickens, 2));
     memoryCardObject.addAll(pickRandomItems(cats, 2));
@@ -104,6 +105,7 @@ class _MemoryGameState extends State<MemoryGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.builder(
+        padding: const EdgeInsets.all(20),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
@@ -148,6 +150,21 @@ class _MemoryGameState extends State<MemoryGame> {
               }
             },
           );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.refresh),
+        onPressed: () {
+          setState(() {
+            // memoryCardObject.clear();
+            // memoryCardObject.addAll(pickRandomItems(dogs, 2));
+            // memoryCardObject.addAll(pickRandomItems(chickens, 2));
+            // memoryCardObject.addAll(pickRandomItems(cats, 2));
+            for (var element in memoryCardObject) {
+              element.isShow = false;
+            }
+            memoryCardObject.shuffle(Random());
+          });
         },
       ),
     );
