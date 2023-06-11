@@ -32,13 +32,31 @@ class MyWidget extends StatefulWidget {
 class _MyWidgetState extends State<MyWidget> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double chessBoardSize;
+    if (screenWidth >= screenHeight) {
+      chessBoardSize = screenHeight * 0.7;
+    } else {
+      chessBoardSize = screenHeight * 0.7;
+    }
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Chess',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue,
+      ),
       body: Center(
         child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          color: Colors.grey,
           alignment: Alignment.center,
           child: Container(
-            height: 500,
-            width: 500,
+            height: chessBoardSize,
+            width: chessBoardSize,
             padding: const EdgeInsets.all(20),
             alignment: Alignment.center,
             color: Colors.grey,
