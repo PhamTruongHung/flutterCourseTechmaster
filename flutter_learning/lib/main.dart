@@ -96,7 +96,6 @@ class _MemoryGameState extends State<MemoryGame> {
     memoryCardObject.addAll(pickRandomItems(dogs, 2));
     memoryCardObject.addAll(pickRandomItems(chickens, 2));
     memoryCardObject.addAll(pickRandomItems(cats, 2));
-
     memoryCardObject.shuffle(Random());
     super.initState();
   }
@@ -129,7 +128,6 @@ class _MemoryGameState extends State<MemoryGame> {
               if (currentMemoryObjectIndex != -1 &&
                   previousMemoryObjectIndex != -1 &&
                   currentMemoryObjectIndex != previousMemoryObjectIndex) {
-                // await Future.delayed(const Duration(seconds: 2));
                 debugPrint(
                     '${memoryCardObject[previousMemoryObjectIndex].animalType}');
                 debugPrint(
@@ -140,11 +138,6 @@ class _MemoryGameState extends State<MemoryGame> {
                   setState(() {
                     memoryCardObject[previousMemoryObjectIndex].isShow = true;
                     memoryCardObject[currentMemoryObjectIndex].isShow = true;
-                  });
-                } else {
-                  setState(() {
-                    // memoryCardObject[previousMemoryObjectIndex].isShow = false;
-                    // memoryCardObject[currentMemoryObjectIndex].isShow = false;
                   });
                 }
               }
@@ -196,9 +189,6 @@ class _MemoryCardItemState extends State<MemoryCardItem> {
         splashColor: Colors.white,
         highlightColor: Colors.white,
         onTap: () {
-          debugPrint('----------------------------');
-          // debugPrint(
-          //     '_MemoryCardItemState - onTap - ${widget.memoryCardObject.animalType}');
           widget.getTappedIndex(widget.index);
           setState(() {
             widget.memoryCardObject.isShow = !widget.memoryCardObject.isShow;
