@@ -33,88 +33,80 @@ class MemoryGame extends StatefulWidget {
 }
 
 class _MemoryGameState extends State<MemoryGame> {
-  List<String> dogImageUrls = [
-    'https://images.pexels.com/photos/3687770/pexels-photo-3687770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    'https://images.pexels.com/photos/3361739/pexels-photo-3361739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    'https://images.pexels.com/photos/3433366/pexels-photo-3433366.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-  ];
-  List<String> chickenImageUrls = [
-    'https://images.pexels.com/photos/5145/animal-easter-chick-chicken.jpg?auto=compress&cs=tinysrgb&w=1200',
-    'https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    'https://images.pexels.com/photos/60616/fried-chicken-chicken-fried-crunchy-60616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-  ];
-  List<String> catImageUrls = [
-    'https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    'https://images.pexels.com/photos/1643457/pexels-photo-1643457.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    'https://images.pexels.com/photos/1828875/pexels-photo-1828875.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-  ];
-
   List<MemoryCardObject> dogs = [
     MemoryCardObject(
         imageUrl:
             'https://images.pexels.com/photos/3687770/pexels-photo-3687770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         animalType: AnimalType.dog,
-        isShow: true),
+        isShow: false),
     MemoryCardObject(
         imageUrl:
             'https://images.pexels.com/photos/3361739/pexels-photo-3361739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         animalType: AnimalType.dog,
-        isShow: true),
+        isShow: false),
     MemoryCardObject(
         imageUrl:
             'https://images.pexels.com/photos/3433366/pexels-photo-3433366.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         animalType: AnimalType.dog,
-        isShow: true),
+        isShow: false),
   ];
   List<MemoryCardObject> chickens = [
     MemoryCardObject(
         imageUrl:
             'https://images.pexels.com/photos/5145/animal-easter-chick-chicken.jpg?auto=compress&cs=tinysrgb&w=1200',
         animalType: AnimalType.chicken,
-        isShow: true),
+        isShow: false),
     MemoryCardObject(
         imageUrl:
             'https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         animalType: AnimalType.chicken,
-        isShow: true),
+        isShow: false),
     MemoryCardObject(
         imageUrl:
             'https://images.pexels.com/photos/60616/fried-chicken-chicken-fried-crunchy-60616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         animalType: AnimalType.chicken,
-        isShow: true),
+        isShow: false),
   ];
   List<MemoryCardObject> cats = [
     MemoryCardObject(
         imageUrl:
             'https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         animalType: AnimalType.cat,
-        isShow: true),
+        isShow: false),
     MemoryCardObject(
         imageUrl:
             'https://images.pexels.com/photos/1643457/pexels-photo-1643457.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         animalType: AnimalType.cat,
-        isShow: true),
+        isShow: false),
     MemoryCardObject(
         imageUrl:
             'https://images.pexels.com/photos/1828875/pexels-photo-1828875.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         animalType: AnimalType.cat,
-        isShow: true),
+        isShow: false),
   ];
 
   List<String> animalUrls = [];
   List<MemoryCardObject> memoryCardObject = [];
 
+  int previousMemoryObjectIndex = -1;
+  int currentMemoryObjectIndex = -1;
   @override
-  Widget build(BuildContext context) {
-    memoryCardObject.add(dogs[Random().nextInt(dogImageUrls.length)]);
-    memoryCardObject.add(dogs[Random().nextInt(dogImageUrls.length)]);
-    memoryCardObject.add(chickens[Random().nextInt(chickenImageUrls.length)]);
-    memoryCardObject.add(chickens[Random().nextInt(chickenImageUrls.length)]);
-    memoryCardObject.add(cats[Random().nextInt(catImageUrls.length)]);
-    memoryCardObject.add(cats[Random().nextInt(catImageUrls.length)]);
+  void initState() {
+    memoryCardObject.add(dogs[Random().nextInt(dogs.length)]);
+    memoryCardObject.add(dogs[Random().nextInt(dogs.length)]);
+    memoryCardObject.add(chickens[Random().nextInt(chickens.length)]);
+    memoryCardObject.add(chickens[Random().nextInt(chickens.length)]);
+    memoryCardObject.add(cats[Random().nextInt(cats.length)]);
+    memoryCardObject.add(cats[Random().nextInt(cats.length)]);
 
     memoryCardObject.shuffle(Random());
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    // int previousMemoryObjectIndex = -1;
+    // int currentMemoryObjectIndex = -1;
     return Scaffold(
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -123,8 +115,24 @@ class _MemoryGameState extends State<MemoryGame> {
         itemCount: memoryCardObject.length,
         itemBuilder: (BuildContext context, int index) {
           return MemoryCardItem(
+            index: index,
             memoryCardObject: memoryCardObject[index],
-            isShow: false,
+            getTappedIndex: (tappedIndex) {
+              debugPrint(
+                  '$currentMemoryObjectIndex - $previousMemoryObjectIndex');
+              if (currentMemoryObjectIndex != -1 &&
+                  previousMemoryObjectIndex != -1) {
+                debugPrint(
+                    memoryCardObject[previousMemoryObjectIndex].toString());
+                debugPrint(
+                    memoryCardObject[currentMemoryObjectIndex].toString());
+              }
+              setState(() {
+                previousMemoryObjectIndex = currentMemoryObjectIndex;
+                currentMemoryObjectIndex = tappedIndex;
+              });
+              debugPrint(tappedIndex.toString());
+            },
           );
         },
       ),
@@ -134,10 +142,14 @@ class _MemoryGameState extends State<MemoryGame> {
 
 class MemoryCardItem extends StatefulWidget {
   const MemoryCardItem(
-      {super.key, required this.memoryCardObject, required this.isShow});
+      {super.key,
+      required this.memoryCardObject,
+      required this.getTappedIndex,
+      required this.index});
 
   final MemoryCardObject memoryCardObject;
-  final bool isShow;
+  final Function(int) getTappedIndex;
+  final int index;
 
   @override
   State<MemoryCardItem> createState() => _MemoryCardItemState();
@@ -147,20 +159,32 @@ class _MemoryCardItemState extends State<MemoryCardItem> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        width: 200,
-        height: 200,
-        margin: const EdgeInsets.all(2),
-        clipBehavior: Clip.hardEdge,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.blue,
-          image: widget.memoryCardObject.isShow
-              ? DecorationImage(
-                  image: NetworkImage(widget.memoryCardObject.imageUrl),
-                  fit: BoxFit.cover)
-              : null,
+      child: InkWell(
+        focusColor: Colors.white,
+        hoverColor: Colors.white,
+        splashColor: Colors.white,
+        highlightColor: Colors.white,
+        onTap: () {
+          widget.getTappedIndex(widget.index);
+          setState(() {
+            widget.memoryCardObject.isShow = !widget.memoryCardObject.isShow;
+          });
+        },
+        child: Container(
+          width: 200,
+          height: 200,
+          margin: const EdgeInsets.all(2),
+          clipBehavior: Clip.hardEdge,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.blue,
+            image: widget.memoryCardObject.isShow
+                ? DecorationImage(
+                    image: NetworkImage(widget.memoryCardObject.imageUrl),
+                    fit: BoxFit.cover)
+                : null,
+          ),
         ),
       ),
     );
