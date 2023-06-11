@@ -153,13 +153,13 @@ class _MemoryGameState extends State<MemoryGame> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.refresh),
+        backgroundColor: Colors.blue,
+        child: const Icon(
+          Icons.refresh,
+          color: Colors.white,
+        ),
         onPressed: () {
           setState(() {
-            // memoryCardObject.clear();
-            // memoryCardObject.addAll(pickRandomItems(dogs, 2));
-            // memoryCardObject.addAll(pickRandomItems(chickens, 2));
-            // memoryCardObject.addAll(pickRandomItems(cats, 2));
             for (var element in memoryCardObject) {
               element.isShow = false;
             }
