@@ -63,27 +63,32 @@ class _MemoryGameState extends State<MemoryGame> {
     animalUrls.shuffle(Random());
 
     return Scaffold(
-        body: ListView.builder(
-      itemCount: animalUrls.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Center(
-          child: Expanded(
-            child: Container(
-              width: 200,
-              height: 200,
-              margin: const EdgeInsets.all(2),
-              clipBehavior: Clip.hardEdge,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                image: DecorationImage(
-                    image: NetworkImage(animalUrls[index]), fit: BoxFit.cover),
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        itemCount: animalUrls.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Center(
+            child: Expanded(
+              child: Container(
+                width: 200,
+                height: 200,
+                margin: const EdgeInsets.all(2),
+                clipBehavior: Clip.hardEdge,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  image: DecorationImage(
+                      image: NetworkImage(animalUrls[index]),
+                      fit: BoxFit.cover),
+                ),
               ),
             ),
-          ),
-        );
-      },
-    ));
+          );
+        },
+      ),
+    );
   }
 }
 
