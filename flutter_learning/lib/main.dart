@@ -69,24 +69,45 @@ class _MemoryGameState extends State<MemoryGame> {
         ),
         itemCount: animalUrls.length,
         itemBuilder: (BuildContext context, int index) {
-          return Center(
-            child: Expanded(
-              child: Container(
-                width: 200,
-                height: 200,
-                margin: const EdgeInsets.all(2),
-                clipBehavior: Clip.hardEdge,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
-                      image: NetworkImage(animalUrls[index]),
-                      fit: BoxFit.cover),
-                ),
-              ),
-            ),
+          return MemoryCardItem(
+            animalUrl: animalUrls[index],
+            isShow: false,
           );
         },
+      ),
+    );
+  }
+}
+
+class MemoryCardItem extends StatefulWidget {
+  const MemoryCardItem(
+      {super.key, required this.animalUrl, required this.isShow});
+
+  final String animalUrl;
+  final bool isShow;
+
+  @override
+  State<MemoryCardItem> createState() => _MemoryCardItemState();
+}
+
+class _MemoryCardItemState extends State<MemoryCardItem> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 200,
+        height: 200,
+        margin: const EdgeInsets.all(2),
+        clipBehavior: Clip.hardEdge,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.blue,
+          image: widget.isShow
+              ? DecorationImage(
+                  image: NetworkImage(widget.animalUrl), fit: BoxFit.cover)
+              : null,
+        ),
       ),
     );
   }
