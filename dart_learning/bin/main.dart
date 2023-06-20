@@ -1,28 +1,15 @@
 void main() async {
   Solution solution = Solution();
 
-  print(solution.findTheDifference("ae", "aea"));
+  print(solution.lengthOfLastWord("Hello    world"));
 }
 
 class Solution {
-  String findTheDifference(String s, String t) {
-    List<String> charactersT = t.split('');
-    charactersT.sort();
-    print(charactersT.toString());
+  int lengthOfLastWord(String s) {
+    String cleanedString = s.trim().replaceAll(RegExp(r'\s+'), ' ');
 
-    List<String> charactersS = s.split('');
-    charactersS.sort();
-    print(charactersS.toString());
+    List<String> words = cleanedString.split(' ');
 
-    for (var i = 0; i < charactersS.length; i++) {
-      // print(i.toString());
-      if (charactersS[i] == charactersT[i]) {
-        // print('$i - ${charactersS[i]} ${charactersT[i]}');
-      } else {
-        return charactersT[i];
-      }
-    }
-
-    return charactersT.last;
+    return words.last.length;
   }
 }
