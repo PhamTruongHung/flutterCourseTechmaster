@@ -1,20 +1,28 @@
 void main() async {
   Solution solution = Solution();
 
-  print(solution.largestOddNumber(2212234233524352122.toString()));
+  print(solution.findTheDifference("ae", "aea"));
 }
 
 class Solution {
-  String largestOddNumber(String num) {
-    List<String> listOfStr = num.split('').toList();
+  String findTheDifference(String s, String t) {
+    List<String> charactersT = t.split('');
+    charactersT.sort();
+    print(charactersT.toString());
 
-    for (var i = listOfStr.length - 1; i >= 0; i--) {
-      print(listOfStr[i]);
-      if (int.parse(listOfStr[i]).isOdd) {
-        return listOfStr.sublist(0, i + 1).join();
+    List<String> charactersS = s.split('');
+    charactersS.sort();
+    print(charactersS.toString());
+
+    for (var i = 0; i < charactersS.length; i++) {
+      // print(i.toString());
+      if (charactersS[i] == charactersT[i]) {
+        // print('$i - ${charactersS[i]} ${charactersT[i]}');
+      } else {
+        return charactersT[i];
       }
     }
 
-    return '';
+    return charactersT.last;
   }
 }

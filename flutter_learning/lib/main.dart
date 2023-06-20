@@ -119,12 +119,12 @@ class _MemoryGameState extends State<MemoryGame> {
                 currentMemoryObjectIndex = tappedIndex;
               });
 
-              debugPrint('Start delay!');
-              await Future.delayed(const Duration(milliseconds: 300));
-              debugPrint('Stop delay!');
-              setState(() {
-                memoryCardObject[tappedIndex].isShow = false;
-              });
+              // debugPrint('Start delay!');
+              // await Future.delayed(const Duration(milliseconds: 300));
+              // debugPrint('Stop delay!');
+              // setState(() {
+              //   // memoryCardObject[tappedIndex].isShow = false;
+              // });
               if (currentMemoryObjectIndex != -1 &&
                   previousMemoryObjectIndex != -1 &&
                   currentMemoryObjectIndex != previousMemoryObjectIndex) {
@@ -138,8 +138,33 @@ class _MemoryGameState extends State<MemoryGame> {
                   setState(() {
                     memoryCardObject[previousMemoryObjectIndex].isShow = true;
                     memoryCardObject[currentMemoryObjectIndex].isShow = true;
+                    memoryCardObject[previousMemoryObjectIndex].isCheck = true;
+                    memoryCardObject[currentMemoryObjectIndex].isCheck = true;
+                  });
+                } else {
+                  setState(() {
+                    if (!memoryCardObject[previousMemoryObjectIndex].isCheck) {
+                      memoryCardObject[previousMemoryObjectIndex].isShow =
+                          false;
+                    }
+                    if (!memoryCardObject[currentMemoryObjectIndex].isCheck) {
+                      memoryCardObject[currentMemoryObjectIndex].isShow = true;
+                      Future.delayed(const Duration(milliseconds: 1000), () {
+                        debugPrint(
+                            'Future.delayed(const Duration(milliseconds: 1000)');
+                        setState(() {
+                          memoryCardObject[currentMemoryObjectIndex].isShow =
+                              false;
+                        });
+                      });
+                    }
                   });
                 }
+              } else {
+                debugPrint('Do not thing!!!');
+                setState(() {
+                  memoryCardObject[tappedIndex].isShow = true;
+                });
               }
             },
           );
@@ -155,6 +180,7 @@ class _MemoryGameState extends State<MemoryGame> {
           setState(() {
             for (var element in memoryCardObject) {
               element.isShow = false;
+              element.isCheck = false;
             }
             memoryCardObject.shuffle(Random());
           });
@@ -189,9 +215,13 @@ class _MemoryCardItemState extends State<MemoryCardItem> {
         splashColor: Colors.white,
         highlightColor: Colors.white,
         onTap: () {
+          debugPrint('Tapped index: ${widget.index}');
+          debugPrint('-----------------------');
           widget.getTappedIndex(widget.index);
           setState(() {
-            widget.memoryCardObject.isShow = !widget.memoryCardObject.isShow;
+            // widget.memoryCardObject.isCheck
+            //     ? null
+            //     : widget.memoryCardObject.isShow = true;
           });
         },
         child: Container(
@@ -219,15 +249,18 @@ class MemoryCardObject {
   String imageUrl;
   AnimalType animalType;
   bool isShow;
+  bool isCheck;
   MemoryCardObject({
     required this.imageUrl,
     required this.animalType,
     required this.isShow,
+    this.isCheck = false,
   });
 
   @override
-  String toString() =>
-      'MemoryCardObject(imageUrl: $imageUrl, animalType: $animalType, isShow: $isShow)';
+  String toString() {
+    return 'MemoryCardObject(imageUrl: $imageUrl, animalType: $animalType, isShow: $isShow, isCheck: $isCheck)';
+  }
 }
 
 List<T> pickRandomItems<T>(List<T> items, int count) {
