@@ -3,30 +3,28 @@ import 'dart:math';
 void main() async {
   Solution solution = Solution();
 
-  print(solution.backspaceCompare("Hello world", "safsdf"));
+  print(solution.countMatches([
+    ["phone", "blue", "pixel"],
+    ["computer", "silver", "lenovo"],
+    ["phone", "gold", "iphone"]
+  ], "color", "silver"));
 }
 
 class Solution {
-  bool backspaceCompare(String s, String t) {
-      List<String> st1 = [];
-      List<String> st2 = [];
-      
-      for (var i=0; i < max(s.length, t.length); i++){
-          if(s.length>=i+1){
-              if (s[i]=='#' && st1.isNotEmpty){
-                  st1.removeLast();
-              } else if (s[i] != '#'){
-                  st1.add(s[i]);
-              }
-          }
-          if(t.length>=i+1){
-              if (t[i]=='#' && st2.isNotEmpty){
-                  st2.removeLast();
-              } else if (t[i] != '#'){
-                  st2.add(t[i]);
-              }
-          }
+  final listKey = ["type", "color", "name"];
+
+  int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+    int getKeyIndex = listKey.indexOf(ruleKey);
+
+    int result = 0;
+
+    for (var i = 0; i < items.length; i++) {
+      for (var j = 0; j < items[i].length; j++) {
+        if (j == getKeyIndex && items[i][j] == ruleValue) {
+          result = result + 1;
+        }
       }
-    return st1.join() == st2.join();
+    }
+    return result;
   }
 }
