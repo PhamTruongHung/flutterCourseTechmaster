@@ -3,28 +3,18 @@ import 'dart:math';
 void main() async {
   Solution solution = Solution();
 
-  print(solution.countMatches([
-    ["phone", "blue", "pixel"],
-    ["computer", "silver", "lenovo"],
-    ["phone", "gold", "iphone"]
-  ], "color", "silver"));
+  print(solution.sortArrayByParity([3, 1, 2, 4]));
 }
 
 class Solution {
-  final listKey = ["type", "color", "name"];
+  List<int> sortArrayByParity(List<int> nums) {
+    List<int> oddList = [];
+    List<int> evenList = [];
 
-  int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
-    int getKeyIndex = listKey.indexOf(ruleKey);
-
-    int result = 0;
-
-    for (var i = 0; i < items.length; i++) {
-      for (var j = 0; j < items[i].length; j++) {
-        if (j == getKeyIndex && items[i][j] == ruleValue) {
-          result = result + 1;
-        }
-      }
+    for (var num in nums) {
+      num.isEven ? evenList.add(num) : oddList.add(num);
     }
-    return result;
+    evenList.addAll(oddList);
+    return evenList;
   }
 }
