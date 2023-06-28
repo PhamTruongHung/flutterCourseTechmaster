@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-/// Flutter code sample for [CupertinoDatePicker].
 
 void main() => runApp(const DatePickerApp());
 
@@ -32,8 +31,10 @@ class DatePickerExample extends StatefulWidget {
 
 class _DatePickerExampleState extends State<DatePickerExample> {
   DateTime date = DateTime.now();
-  DateTime time = DateTime(2016, 5, 10, 22, 35);
-  DateTime dateTime = DateTime(2016, 8, 3, 17, 45);
+  DateTime confirmDate = DateTime(
+      DateTime.now().year - 18, DateTime.now().month, DateTime.now().day);
+  DateTime initialDateTime = DateTime(
+      DateTime.now().year - 18, DateTime.now().month, DateTime.now().day);
 
   // This function displays a CupertinoModalPopup with a reasonable fixed height
   // which hosts CupertinoDatePicker.
@@ -41,7 +42,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => Container(
-        height: 216,
+        height: 400,
         padding: const EdgeInsets.only(top: 6.0),
         // The Bottom margin is provided to align the popup above the system
         // navigation bar.
@@ -80,27 +81,50 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                   CupertinoButton(
                     // Display a CupertinoDatePicker in date picker mode.
                     onPressed: () => _showDialog(
-                      CupertinoDatePicker(
-                        initialDateTime:
-                            DateTime(date.year - 18, date.month, date.day),
-                        minimumDate:
-                            DateTime(date.year - 60, date.month, date.day),
-                        maximumDate: date,
-                        mode: CupertinoDatePickerMode.date,
-                        use24hFormat: true,
-                        // This shows day of week alongside day of month
-                        // showDayOfWeek: true,
-                        // This is called when the user changes the date.
-                        onDateTimeChanged: (DateTime newDate) {
-                          setState(() => date = newDate);
-                        },
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              // height: 200,
+                              child: CupertinoDatePicker(
+                                initialDateTime: confirmDate,
+                                minimumDate: DateTime(
+                                    date.year - 60, date.month, date.day),
+                                maximumDate: date,
+                                mode: CupertinoDatePickerMode.date,
+                                use24hFormat: true,
+                                // This shows day of week alongside day of month
+                                // showDayOfWeek: true,
+                                // This is called when the user changes the date.
+                                onDateTimeChanged: (DateTime newDate) {
+                                  confirmDate = newDate;
+                                },
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 80,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  setState(() => date = confirmDate);
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Xong"),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     // In this example, the date is formatted manually. You can
                     // use the intl package to format the value based on the
                     // user's locale settings.
                     child: Text(
-                      '${date.month}-${date.day}-${date.year}',
+                      '${confirmDate.day}-${confirmDate.month}-${confirmDate.year}',
                       style: const TextStyle(
                         fontSize: 22.0,
                       ),
