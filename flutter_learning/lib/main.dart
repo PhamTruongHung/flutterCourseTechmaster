@@ -35,9 +35,11 @@ class _DatePickerExampleState extends State<DatePickerExample> {
       DateTime.now().year - 18, DateTime.now().month, DateTime.now().day);
   DateTime initialDateTime = DateTime(
       DateTime.now().year - 18, DateTime.now().month, DateTime.now().day);
+  @override
+  void initState() {
+    super.initState();
+  }
 
-  // This function displays a CupertinoModalPopup with a reasonable fixed height
-  // which hosts CupertinoDatePicker.
   void _showDialog(Widget child) {
     showCupertinoModalPopup<void>(
       context: context,
@@ -77,26 +79,20 @@ class _DatePickerExampleState extends State<DatePickerExample> {
             children: <Widget>[
               _DatePickerItem(
                 children: <Widget>[
-                  const Text('Date'),
                   CupertinoButton(
-                    // Display a CupertinoDatePicker in date picker mode.
                     onPressed: () => _showDialog(
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Expanded(
                             child: SizedBox(
-                              // height: 200,
                               child: CupertinoDatePicker(
-                                initialDateTime: confirmDate,
+                                initialDateTime: initialDateTime,
                                 minimumDate: DateTime(
                                     date.year - 60, date.month, date.day),
-                                maximumDate: date,
+                                maximumDate: DateTime.now(),
                                 mode: CupertinoDatePickerMode.date,
                                 use24hFormat: true,
-                                // This shows day of week alongside day of month
-                                // showDayOfWeek: true,
-                                // This is called when the user changes the date.
                                 onDateTimeChanged: (DateTime newDate) {
                                   confirmDate = newDate;
                                 },
@@ -120,13 +116,30 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                         ],
                       ),
                     ),
-                    // In this example, the date is formatted manually. You can
-                    // use the intl package to format the value based on the
-                    // user's locale settings.
-                    child: Text(
-                      '${confirmDate.day}-${confirmDate.month}-${confirmDate.year}',
-                      style: const TextStyle(
-                        fontSize: 22.0,
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      height: 100,
+                      width: 300,
+                      child: Column(
+                        children: [
+                          CupertinoTextField(
+                            enabled: false,
+                            readOnly: true,
+                            controller: TextEditingController(
+                                text:
+                                    '${confirmDate.day}-${confirmDate.month}-${confirmDate.year}'),
+                            placeholder: 'Input your DOB....',
+                            prefix: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Date of birth: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -140,7 +153,6 @@ class _DatePickerExampleState extends State<DatePickerExample> {
   }
 }
 
-// This class simply decorates a row of widgets.
 class _DatePickerItem extends StatelessWidget {
   const _DatePickerItem({required this.children});
 
@@ -152,11 +164,11 @@ class _DatePickerItem extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: CupertinoColors.inactiveGray,
+            color: CupertinoColors.white,
             width: 0.0,
           ),
           bottom: BorderSide(
-            color: CupertinoColors.inactiveGray,
+            color: CupertinoColors.white,
             width: 0.0,
           ),
         ),
