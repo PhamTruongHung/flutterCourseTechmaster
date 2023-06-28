@@ -1,85 +1,147 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+/// Flutter code sample for [CupertinoDatePicker].
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+void main() => runApp(const DatePickerApp());
+
+class DatePickerApp extends StatelessWidget {
+  const DatePickerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.blue,
-      ),
-      home: HomeScreen(
-        onTapCallBack: (valueS) {
-          debugPrint('statement');
-          return;
-        },
-      ),
+    return const CupertinoApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [Locale('vi'), Locale('VI')],
+      theme: CupertinoThemeData(brightness: Brightness.light),
+      home: DatePickerExample(),
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.onTapCallBack});
-  final Function(int) onTapCallBack;
+class DatePickerExample extends StatefulWidget {
+  const DatePickerExample({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<DatePickerExample> createState() => _DatePickerExampleState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  void _showBottomSheet(BuildContext context) {
-    showModalBottomSheet(
+class _DatePickerExampleState extends State<DatePickerExample> {
+  DateTime date = DateTime.now();
+  DateTime time = DateTime(2016, 5, 10, 22, 35);
+  DateTime dateTime = DateTime(2016, 8, 3, 17, 45);
+
+  // This function displays a CupertinoModalPopup with a reasonable fixed height
+  // which hosts CupertinoDatePicker.
+  void _showDialog(Widget child) {
+    showCupertinoModalPopup<void>(
       context: context,
-      builder: (BuildContext context) {
-        return Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-            ),
-          ),
-          child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                onTap: widget.onTapCallBack(index),
-                title: Text('$index'),
-              );
-            },
-          ),
-        );
-      },
+      builder: (BuildContext context) => Container(
+        height: 216,
+        padding: const EdgeInsets.only(top: 6.0),
+        // The Bottom margin is provided to align the popup above the system
+        // navigation bar.
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        // Provide a background color for the popup.
+        color: CupertinoColors.systemBackground.resolveFrom(context),
+        // Use a SafeArea widget to avoid system overlaps.
+        child: SafeArea(
+          top: false,
+          child: child,
+        ),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bottom Sheet Example'),
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        middle: Text('CupertinoDatePicker Sample'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            _showBottomSheet(context);
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
+      child: DefaultTextStyle(
+        style: TextStyle(
+          color: CupertinoColors.label.resolveFrom(context),
+          fontSize: 22.0,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _DatePickerItem(
+                children: <Widget>[
+                  const Text('Date'),
+                  CupertinoButton(
+                    // Display a CupertinoDatePicker in date picker mode.
+                    onPressed: () => _showDialog(
+                      CupertinoDatePicker(
+                        initialDateTime:
+                            DateTime(date.year - 18, date.month, date.day),
+                        minimumDate:
+                            DateTime(date.year - 60, date.month, date.day),
+                        maximumDate: date,
+                        mode: CupertinoDatePickerMode.date,
+                        use24hFormat: true,
+                        // This shows day of week alongside day of month
+                        // showDayOfWeek: true,
+                        // This is called when the user changes the date.
+                        onDateTimeChanged: (DateTime newDate) {
+                          setState(() => date = newDate);
+                        },
+                      ),
+                    ),
+                    // In this example, the date is formatted manually. You can
+                    // use the intl package to format the value based on the
+                    // user's locale settings.
+                    child: Text(
+                      '${date.month}-${date.day}-${date.year}',
+                      style: const TextStyle(
+                        fontSize: 22.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          child: const Text(
-            'Show Bottom Sheet',
-            style: TextStyle(fontSize: 18),
+        ),
+      ),
+    );
+  }
+}
+
+// This class simply decorates a row of widgets.
+class _DatePickerItem extends StatelessWidget {
+  const _DatePickerItem({required this.children});
+
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: CupertinoColors.inactiveGray,
+            width: 0.0,
           ),
+          bottom: BorderSide(
+            color: CupertinoColors.inactiveGray,
+            width: 0.0,
+          ),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: children,
         ),
       ),
     );

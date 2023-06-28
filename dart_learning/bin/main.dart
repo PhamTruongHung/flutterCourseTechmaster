@@ -1,20 +1,27 @@
-import 'dart:math';
-
 void main() async {
   Solution solution = Solution();
 
-  print(solution.sortArrayByParity([3, 1, 2, 4]));
+  // print(solution.distributeCandy([1, 1, 2, 2, 3, 3]));
+  print(solution.isAnagram("aacc", "ccac"));
 }
 
 class Solution {
-  List<int> sortArrayByParity(List<int> nums) {
-    List<int> oddList = [];
-    List<int> evenList = [];
+  bool isAnagram(String s, String t) {
+    Set sS = s.split("").toSet();
+    Set tS = t.split("").toSet();
+    sS.a
 
-    for (var num in nums) {
-      num.isEven ? evenList.add(num) : oddList.add(num);
+    print(sS.);
+    print(tS);
+
+    if (s.length != t.length || sS.length != tS.length) {
+      return false;
     }
-    evenList.addAll(oddList);
-    return evenList;
+
+    if (sS.containsAll(tS)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
