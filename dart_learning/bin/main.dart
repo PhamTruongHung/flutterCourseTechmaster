@@ -1,35 +1,41 @@
 void main() async {
   Solution solution = Solution();
-  List<int> nums = [-4, -1, 0, 3, 10];
+  String paragraph =
+      "..Bob hit a ball, the hit BALL flew far after it was hit.";
+  List<String> banned = ["hit"];
 
-  print(solution.sortedSquares(nums));
+  print(solution.mostCommonWord(paragraph, banned));
 }
 
 class Solution {
-  List<int> sortedSquares(List<int> nums) {
-    List<int> numbers = nums;
-    List<int> squaredNumbers =
-        numbers.map((int number) => number * number).toList();
+  String mostCommonWord(String paragraph, List<String> banned) {
+    // Create a map to store word frequencies
+    Map<String, int> wordFreq = {};
 
-    print(squaredNumbers);
+    // Split the paragraph into words
+    List<String> words = paragraph.toLowerCase().replaceAll(".", "").split(RegExp(r'\W+'));
 
-    print('squaredNumbers List: $squaredNumbers');
-    bubbleSort(squaredNumbers);
-    print('Sorted squaredNumbers List: $squaredNumbers');
+    print(words);
 
-    return squaredNumbers;
-  }
-
-  void bubbleSort(List<int> list) {
-    int n = list.length;
-    for (int i = 0; i < n - 1; i++) {
-      for (int j = 0; j < n - i - 1; j++) {
-        if (list[j] > list[j + 1]) {
-          int temp = list[j];
-          list[j] = list[j + 1];
-          list[j + 1] = temp;
-        }
+    // Count the frequency of each word
+    for (String word in words) {
+      if (!banned.contains(word)) {
+        wordFreq[word] = (wordFreq[word] ?? 0) + 1;
       }
     }
+
+    print(wordFreq);
+
+    // Find the most frequent word
+    String mostFrequent = '';
+    int maxFreq = 0;
+    for (String word in wordFreq.keys) {
+      if ((wordFreq[word] ?? 0) > maxFreq) {
+        mostFrequent = word;
+        maxFreq = wordFreq[word] ?? 0;
+      }
+    }
+
+    return mostFrequent;
   }
 }
