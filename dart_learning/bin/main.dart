@@ -1,27 +1,22 @@
-void main() async {
-  Solution solution = Solution();
-
-  // print(solution.distributeCandy([1, 1, 2, 2, 3, 3]));
-  print(solution.isAnagram("aacc", "ccac"));
-}
-
-class Solution {
-  bool isAnagram(String s, String t) {
-    Set sS = s.split("").toSet();
-    Set tS = t.split("").toSet();
-    sS.a
-
-    print(sS.);
-    print(tS);
-
-    if (s.length != t.length || sS.length != tS.length) {
-      return false;
-    }
-
-    if (sS.containsAll(tS)) {
-      return true;
-    } else {
-      return false;
+void bubbleSort(List<int> arr) {
+  int n = arr.length;
+  for (int i = 0; i < n - 1; i++) {
+    for (int j = 0; j < n - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        int temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
     }
   }
+}
+
+void main() {
+  List<int> numbers = [64, 34, 25, 12, 22, 11, 90];
+
+  print('Original array: $numbers');
+
+  bubbleSort(numbers);
+
+  print('Sorted array: $numbers');
 }
