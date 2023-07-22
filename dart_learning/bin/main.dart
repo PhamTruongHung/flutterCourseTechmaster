@@ -1,41 +1,52 @@
-void main() async {
-  Solution solution = Solution();
-  String paragraph =
-      "..Bob hit a ball, the hit BALL flew far after it was hit.";
-  List<String> banned = ["hit"];
+// Function to merge two sorted arrays into a single sorted array
+List<int> merge(List<int> left, List<int> right) {
+  List<int> merged = [];
+  int leftIndex = 0;
+  int rightIndex = 0;
 
-  print(solution.mostCommonWord(paragraph, banned));
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      merged.add(left[leftIndex]);
+      leftIndex++;
+    } else {
+      merged.add(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  while (leftIndex < left.length) {
+    merged.add(left[leftIndex]);
+    leftIndex++;
+  }
+
+  while (rightIndex < right.length) {
+    merged.add(right[rightIndex]);
+    rightIndex++;
+  }
+
+  return merged;
 }
 
-class Solution {
-  String mostCommonWord(String paragraph, List<String> banned) {
-    // Create a map to store word frequencies
-    Map<String, int> wordFreq = {};
-
-    // Split the paragraph into words
-    List<String> words = paragraph.toLowerCase().replaceAll(".", "").split(RegExp(r'\W+'));
-
-    print(words);
-
-    // Count the frequency of each word
-    for (String word in words) {
-      if (!banned.contains(word)) {
-        wordFreq[word] = (wordFreq[word] ?? 0) + 1;
-      }
-    }
-
-    print(wordFreq);
-
-    // Find the most frequent word
-    String mostFrequent = '';
-    int maxFreq = 0;
-    for (String word in wordFreq.keys) {
-      if ((wordFreq[word] ?? 0) > maxFreq) {
-        mostFrequent = word;
-        maxFreq = wordFreq[word] ?? 0;
-      }
-    }
-
-    return mostFrequent;
+// Merge Sort function
+List<int> mergeSort(List<int> arr) {
+  if (arr.length <= 1) {
+    return arr;
   }
+
+  int mid = arr.length ~/ 2;
+  List<int> left = arr.sublist(0, mid);
+  List<int> right = arr.sublist(mid);
+
+  left = mergeSort(left);
+  right = mergeSort(right);
+
+  return merge(left, right);
+}
+
+void main() {
+  List<int> unsortedList = [38, 27, 43, 3, 9, 82, 10];
+  List<int> sortedList = mergeSort(unsortedList);
+
+  print("Unsorted List: $unsortedList");
+  print("Sorted List: $sortedList");
 }
